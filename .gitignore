@@ -1,5 +1,12 @@
+# Dossier doc
+doc/*
+
+# Description du projet
+*.doc
+*.odt
+
 # Compiled class file
-*.class
+#*.class
 
 # Log file
 *.log
