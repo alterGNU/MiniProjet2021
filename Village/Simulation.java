@@ -44,8 +44,8 @@ public class Simulation {
             System.console().flush();
             System.out.println("PHASE : INITIALISATION TERMINÉE");
             ter1.affiche();
-            System.out.println("Ressources du village : ");
-            Thread.sleep(1000);
+            System.out.println("Ressources Disponibles : ");
+            System.out.println("Ressources Collectées : ");
     }
 
     /** Permet de placer aléatoirement un nombre donné d'un type de ressource sur un Terrain.
@@ -56,7 +56,6 @@ public class Simulation {
      */
     public static void initRandomRessources(Terrain t,String nom, int nb){
         int compteobjet = 0; // Compteur du nombre de ressource/objet créé(e)s
-        try{
             while (compteobjet < nb) {
                 // Génération aléatoire des coordonnées et de la quantité des Arbres à créer
                 int x = new Random().nextInt(t.nbLignes); // Valeur aléatoire d'abscisse comprise entre 1 et nb
@@ -66,20 +65,21 @@ public class Simulation {
                 //System.out.println("Création de nouvelles coordonnées: ("+x+";"+y+") ainsi que de la quantité :"+q+".");
 
                 // Vérification si Vide, alors 
-                if (t.caseEstVide(x,y)){
-                    Ressource res1 = new Ressource(nom,nb);
-                    t.setCase(x,y,res1);
-                    // AFFICHER-CLEAN
-                    System.console().writer().print(ESC + "[1;1H");
-                    System.console().flush();
-                    System.out.println("PHASE : INITIALISATION EN COURS");
-                    t.affiche();
-                    System.out.println("Ressources du village : ");
-                    Thread.sleep(500);
-                    compteobjet++ ;
-                }
+                try{
+                    if (t.caseEstVide(x,y)){
+                        Ressource res1 = new Ressource(nom,nb);
+                        t.setCase(x,y,res1);
+                        // AFFICHER-CLEAN
+                        System.console().writer().print(ESC + "[1;1H");
+                        System.console().flush();
+                        System.out.println("PHASE : INITIALISATION EN COURS");
+                        t.affiche();
+                        System.out.println("Ressources du village : ");
+                        Thread.sleep(250);
+                        compteobjet++ ;
+                    }
+                }catch(InterruptedException ex){
             }
-        }catch(InterruptedException ex){
         }
     }
 }
