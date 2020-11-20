@@ -28,6 +28,7 @@ public class Simulation {
             // Initialisation : Créer l'environnement
             Terrain ter1 = new Terrain(10,10);
 
+
             // AFFICHER-CLEAN
             System.console().writer().print(ESC + "[1;1H");
             System.console().flush();
@@ -46,6 +47,14 @@ public class Simulation {
             ter1.affiche();
             System.out.println("Ressources Disponibles : ");
             System.out.println("Ressources Collectées : ");
+
+            // CREATION DES AGENTS
+            Agent ag = new Agent();
+            System.out.println("L'agent créé est dans la case : ("+ag.getX()+":"+ag.getY()+")");
+            System.out.println("La distance séparant l'agent de la case 4,5 est :"+ag.distance(4,5)); 
+            ag.seDeplacer(ag.getX()+1,ag.getY());
+            System.out.println("La distance séparant l'agent de la case 4,5 est :"+ag.distance(4,5)); 
+
     }
 
     /** Permet de placer aléatoirement un nombre donné d'un type de ressource sur un Terrain.
