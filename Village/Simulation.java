@@ -5,16 +5,18 @@
  * </ul>
  *
  * @param T : Correspond au terrain sur lequel effectuer la simulation
- * @param tabRessource : Tableau contenant le nom et le nombre de ressources à ajouter au terrain
+ * @param tabInitRessource : Tableau contenant le nom et le nombre de ressources à ajouter au terrain
  * @param tabnom : Tableau contenant les noms (et donc le nombre) des Villageois à créer
- * @param tabVillageois : Tableau de villageois
+ * @param tabVillageois : Tableau d'objet:Villageois
+ * @param tabRessource : Tableau d'objet:Ressource
  */
 public class Simulation {
 
     private final Terrain T = new Terrain(10,10);
-    private String[][] tabRessource;
+    private String[][] tabInitRessource;
     private String[] tabnom;
     private Villageois[] tabVillageois;
+    private Ressource[] tabRessource;
 
     /** Constructeur de Simulation.
      * Les simulations partage toutes un même terrain
@@ -24,7 +26,7 @@ public class Simulation {
      * @param c : Correspond au nombre de colonne du terrain à générer et sur lequel faire les simulations
      */
     public Simulation(String[][] tab,String[] tabnom){
-        this.tabRessource=tab;
+        this.tabInitRessource=tab;
         this.tabnom=tabnom;
     }
 
@@ -34,7 +36,7 @@ public class Simulation {
 
         // PHASE Initialisation : 
         // Génére aléatoirement des cases sur lesquelles placer les ressources à partir d'un tableau de ressource
-        initRandomRessources(this.tabRessource) ;
+        initRandomRessources(this.tabInitRessource) ;
         // Créer les villageois à partir d'un tableau de nom et créer un tableau de villageois
         initVillageois(this.tabnom);
         // Affichage du terrain avec les ressources ajoutées
@@ -46,17 +48,17 @@ public class Simulation {
     /** Initialisation des villageois:
      * <ul>
      * <li> Créer les villageois à partir d'un tableau de nom
-     * <li> Créer un tableau de villageois
+     * <li> Créer un tableau d'objet:Villageois
      * </ul>
      *
      * @param arrayName Correspond a un tableau de nom à attribuer aux villageois
      */
     public void initVillageois(String[] arrayName){
         int taille = arrayName.length;
-        Villageois tabinter[] = new Villageois[taille];
+        this.tabVillageois = new Villageois[taille];
         for (int i=0; i<taille;i++){
-            tabinter[i] = new Villageois(arrayName[i]);
-            System.out.println(tabinter[i].toString());
+            this.tabVillageois[i] = new Villageois(arrayName[i]);
+            System.out.println(this.tabVillageois[i].toString());
         }
         
         // Affichage du nombre de villageois créé
@@ -66,13 +68,19 @@ public class Simulation {
 
     /** Permet de placer aléatoirement un nombre donné d'un type de ressource sur un Terrain.
      *
-     * @param nom Correspond au nom du type de ressource à créer (exemple : Roche, Arbre,...)
-     * @param m Correspond au nombre de ressource à créer
+     * @param tabR Correspond au tableau de String de deux dimensions permettant d'initialiser un type ainsi qu'un
+     * nombre de ressource donné.Pour se faire il est composé de la manière suivante:
+     * <ul>
+     * <li> tabR[O][i] : correspondent aux noms des i-ressources.
+     * <li> tabR[i][1] : correspondent aux quantités q des i-ressource.
+     * </ul>
      */
-    public void initRandomRessources(String[][] tab){
-        for (int i =0; i<tab.length; i++){
-            String nom = tab[i][0];
-            int m = Integer.parseInt(tab[i][1]);
+    public void initRandomRessources(String[][] tabR){
+        int taille = tabR.length; // récupére la taille, et donc le nombre de ressource à creer (pas la quantité)
+        this.tabRessource = new Ressource[taille];
+        for (int i =0; i<taille; i++){
+            String nom = tabR[i][0];
+            int m = Integer.parseInt(tabR[i][1]);
             int compteobjet = 0; // Compteur du nombre de ressource/objet créé(e)s
             while (compteobjet < m) {
                 // Génération aléatoire des coordonnées et de la quantité des Arbres à créer
@@ -84,8 +92,13 @@ public class Simulation {
                 // Vérification si Vide, alors 
                 if (T.caseEstVide(x,y)){
                     Ressource res1 = new Ressource(nom,m);
+                    // Place la ressource sur le terrain
                     T.setCase(x,y,res1);
+                    // Ajoute la ressource au tableau de ressource
+                    this.tabRessource[i] = res1;
+                    System.out.println(this.tabRessource[i].toString());
                     //System.out.println(" AJOUTÉ :"+nom+".x."+x+".y."+y+".q."+q);
+                    // incrémentation du compteur de ressource
                     compteobjet++ ;
                 }
                 else{

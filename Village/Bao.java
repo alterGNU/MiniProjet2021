@@ -17,18 +17,17 @@ public class Bao {
         return ((int) (Math.random() * (max - min) + min));
     }
 
-    ///** Methode permettant d'afficher le contenu d'un tableau d'objet
+    ///** Methode permettant d'afficher le contenu d'un tableau de String
     // *
     // * @param obj Correspond au type d'objet à afficher
     // * retournés
     // */
-    //public static void afficheTableauObjet(
-        //Loop permettant d'afficher un tableau de string
-        //for (String[] tab: ressource){
-        //    for (String s: tab){
-        //        System.out.print(s + "\t");
-        //    }
-        //    System.out.println("\n");
-        //}
+    //public static void afficheTableauString(String type,String nom){
+    //    for (type[] tab: nom){
+    //        for (String s: tab){
+    //            System.out.print(s + "\t");
+    //        }
+    //        System.out.println("\n");
+    //    }
 
 }
