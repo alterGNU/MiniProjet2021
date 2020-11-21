@@ -42,17 +42,4 @@ public class Bao {
         return total;
     }
 
-    ///** Methode permettant d'afficher le contenu d'un tableau de String
-    // *
-    // * @param obj Correspond au type d'objet à afficher
-    // * retournés
-    // */
-    //public static void afficheTableauString(String type,String nom){
-    //    for (type[] tab: nom){
-    //        for (String s: tab){
-    //            System.out.print(s + "\t");
-    //        }
-    //        System.out.println("\n");
-    //    }
-
 }

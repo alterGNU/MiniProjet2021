@@ -44,8 +44,14 @@ public class Simulation {
         // Affichage du terrain avec les ressources ajoutées
         System.out.println("Informations sur le terrain:\n"+T);
         T.affiche();
+       
         // information sur les listes
+        System.out.println("\nCONTENU LIST DE RESSOURCE\n");
         for (Ressource r: this.tabRessource){
+            System.out.print(r +"\n");
+        }
+        System.out.println("\nCONTENU LIST DE VILLAGEOIS\n");
+        for (Villageois r: this.tabVillageois){
             System.out.print(r +"\n");
         }
         System.out.print("\n");
@@ -99,7 +105,7 @@ public class Simulation {
 
                 // Vérification si Vide, alors 
                 if (T.caseEstVide(x,y)){
-                    Ressource res1 = new Ressource(nom,m);
+                    Ressource res1 = new Ressource(nom,q);
                     T.setCase(x,y,res1);                   // Place la ressource sur le terrain
                     this.tabRessource[cptR] = res1;   // Ajoute la ressource au tableau de ressource
                     System.out.println(" AJOUT :"+this.tabRessource[i].toString());
