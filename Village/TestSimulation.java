@@ -8,10 +8,11 @@ public class TestSimulation {
      */
     public static void main(String[] args) {
         
+        Terrain T= new Terrain(5,5);
         String[][] ressource={{"Arbre","2"},{"Roche","4"},{"Caillou","6"}};
         String[] nom={"Bob","Sam","Thierry"};
 
-        Simulation S1 = new Simulation(ressource,nom);
+        Simulation S1 = new Simulation(T,ressource,nom);
         S1.phaseInit();
         //S1.phaseRecolte();
 

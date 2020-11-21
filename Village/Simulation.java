@@ -12,7 +12,8 @@
  */
 public class Simulation {
 
-    private final Terrain T = new Terrain(10,10);
+    //private final Terrain T = new Terrain(10,10);
+    private Terrain T ;
     private String[][] tabInitRessource;
     private String[] tabnom;
     private Villageois[] tabVillageois;
@@ -25,7 +26,8 @@ public class Simulation {
      * @param l : Correspond au nombre de ligne du terrain à générer et sur lequel faire les simulations
      * @param c : Correspond au nombre de colonne du terrain à générer et sur lequel faire les simulations
      */
-    public Simulation(String[][] tab,String[] tabnom){
+    public Simulation(Terrain ter1, String[][] tab,String[] tabnom){
+        this.T=ter1;
         this.tabInitRessource=tab;
         this.tabnom=tabnom;
     }
