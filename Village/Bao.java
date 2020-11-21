@@ -13,7 +13,7 @@ public class Bao {
      * @param max Correspond à la borne supérieur de l'intervalle dans lequel générer les entiers aléatoirement
      * retournés
      */
-    public static int NbrAleatoire(int min,int max){
+    public static int nbrAleatoire(int min,int max){
         return ((int) (Math.random() * (max - min) + min));
     }
 
@@ -22,7 +22,7 @@ public class Bao {
      * 
      * @param itab Tableau d'entier
      */ 
-    public static int SommeTabEntier(int[] itab){
+    public static int sommeTabEntier(int[] itab){
         int total =0;
         for (int i=0; i<itab.length; i++){
             total += itab[i];
@@ -34,7 +34,7 @@ public class Bao {
      * 
      * @param stab Correspond au tableau d'initialisation des ressources (Tableau de String à deux dimensions)
      */ 
-    public static int NbrRessourceTotale(String[][] stab){
+    public static int nbrRessourceTotal(String[][] stab){
         int total =0;
         for (int t=0; t<stab.length; t++){
             total += Integer.parseInt(stab[t][1]);

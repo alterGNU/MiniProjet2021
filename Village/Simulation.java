@@ -32,6 +32,11 @@ public class Simulation {
         this.tabnom=tabnom;
     }
 
+    /** Methode de lancement de la phase d'initialisation de l'environnement
+     *
+     * <li> Initialise les ressources via à la méthode initRandomRessources
+     * <li> Initialise les villageois via la méthode initVillageois
+     */
     public void phaseInit(){
         
         System.out.println("PHASE 1:Initialisation de l'environnement:");
@@ -63,7 +68,6 @@ public class Simulation {
      * <li> Créer les villageois à partir d'un tableau de nom
      * <li> Créer un tableau d'objet:Villageois
      * </ul>
-     *
      * @param arrayName Correspond a un tableau de nom à attribuer aux villageois
      */
     private void initVillageois(String[] arrayName){
@@ -89,7 +93,7 @@ public class Simulation {
      * </ul>
      */
     private void initRandomRessources(String[][] tabR){
-        int taille = Bao.NbrRessourceTotale(tabR);
+        int taille = Bao.nbrRessourceTotal(tabR);
         this.tabRessource = new Ressource[taille];
         int cptR = 0;                                     // Compteur du nombre de ressource/objet créé(e)s
         for (int i =0; i<tabR.length; i++){
@@ -98,9 +102,9 @@ public class Simulation {
             int cptBoucle = 0;                            // Compteur de boucle
             while (cptBoucle < m) {
                 // Génération aléatoire des coordonnées et de la quantité des Arbres à créer
-                int x = Bao.NbrAleatoire(0,T.nbLignes);   // Valeur aléatoire d'abscisse comprise entre 0 et m
-                int y = Bao.NbrAleatoire(0,T.nbColonnes); // Valeur aléatoire d'ordonnée comprise entre 0 et m
-                int q = Bao.NbrAleatoire(1,4);            // Valeur aléatoire de quantité comprise entre 1 et 3
+                int x = Bao.nbrAleatoire(0,T.nbLignes);   // Valeur aléatoire d'abscisse comprise entre 0 et m
+                int y = Bao.nbrAleatoire(0,T.nbColonnes); // Valeur aléatoire d'ordonnée comprise entre 0 et m
+                int q = Bao.nbrAleatoire(1,4);            // Valeur aléatoire de quantité comprise entre 1 et 3
                 System.out.println("TIRÉ AU SORT:"+nom+".x."+x+".y."+y+".q."+q);
 
                 // Vérification si Vide, alors 
