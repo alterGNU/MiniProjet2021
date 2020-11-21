@@ -1,18 +1,30 @@
 PHASE 1:Initialisation de l'environnement:
-Arbre[id:0 quantite: 2]  en position (9, 9)
-Arbre[id:1 quantite: 2]  en position (3, 2)
+TIRÉ AU SORT:Arbre.x.3.y.7.q.3
+ AJOUT :Arbre[id:0 quantite: 2]  en position (3, 7)
+TIRÉ AU SORT:Arbre.x.9.y.4.q.3
+ AJOUT :Arbre[id:0 quantite: 2]  en position (3, 7)
 ...2 ressources Arbre ont été ajoutées...
-Roche[id:2 quantite: 4]  en position (2, 5)
-Roche[id:3 quantite: 4]  en position (4, 3)
-Roche[id:4 quantite: 4]  en position (4, 2)
-Roche[id:5 quantite: 4]  en position (2, 9)
+TIRÉ AU SORT:Roche.x.8.y.3.q.2
+ AJOUT :Arbre[id:1 quantite: 2]  en position (9, 4)
+TIRÉ AU SORT:Roche.x.0.y.9.q.1
+ AJOUT :Roche[id:3 quantite: 4]  en position (0, 9)
+TIRÉ AU SORT:Roche.x.8.y.1.q.1
+ AJOUT :Roche[id:3 quantite: 4]  en position (0, 9)
+TIRÉ AU SORT:Roche.x.8.y.9.q.2
+ AJOUT :Roche[id:3 quantite: 4]  en position (0, 9)
 ...4 ressources Roche ont été ajoutées...
-Caillou[id:6 quantite: 6]  en position (4, 6)
-Caillou[id:7 quantite: 6]  en position (9, 0)
-Caillou[id:8 quantite: 6]  en position (6, 7)
-Caillou[id:9 quantite: 6]  en position (4, 8)
-Caillou[id:10 quantite: 6]  en position (7, 1)
-Caillou[id:11 quantite: 6]  en position (3, 0)
+TIRÉ AU SORT:Caillou.x.9.y.7.q.2
+ AJOUT :Roche[id:4 quantite: 4]  en position (8, 1)
+TIRÉ AU SORT:Caillou.x.9.y.2.q.2
+ AJOUT :Roche[id:4 quantite: 4]  en position (8, 1)
+TIRÉ AU SORT:Caillou.x.3.y.3.q.3
+ AJOUT :Caillou[id:8 quantite: 6]  en position (3, 3)
+TIRÉ AU SORT:Caillou.x.5.y.2.q.2
+ AJOUT :Caillou[id:8 quantite: 6]  en position (3, 3)
+TIRÉ AU SORT:Caillou.x.6.y.3.q.1
+ AJOUT :Caillou[id:8 quantite: 6]  en position (3, 3)
+TIRÉ AU SORT:Caillou.x.2.y.1.q.1
+ AJOUT :Caillou[id:8 quantite: 6]  en position (3, 3)
 ...6 ressources Caillou ont été ajoutées...
 Villageois Bob est dans la case (-1:-1)
 Villageois Sam est dans la case (-1:-1)
@@ -21,25 +33,37 @@ Villageois Thierry est dans la case (-1:-1)
 Informations sur le terrain:
 Terrain de 10x10 cases: il y a 12 cases occupées.
 :-----:-----:-----:-----:-----:-----:-----:-----:-----:-----:
-|     |     |     |     |     |     |     |     |     |     |
+|     |     |     |     |     |     |     |     |     |Roche|
 :-----:-----:-----:-----:-----:-----:-----:-----:-----:-----:
 |     |     |     |     |     |     |     |     |     |     |
-:-----:-----:-----:-----:-----:-----:-----:-----:-----:-----:
-|     |     |     |     |     |Roche|     |     |     |Roche|
-:-----:-----:-----:-----:-----:-----:-----:-----:-----:-----:
-|Caill|     |Arbre|     |     |     |     |     |     |     |
-:-----:-----:-----:-----:-----:-----:-----:-----:-----:-----:
-|     |     |Roche|Roche|     |     |Caill|     |Caill|     |
-:-----:-----:-----:-----:-----:-----:-----:-----:-----:-----:
-|     |     |     |     |     |     |     |     |     |     |
-:-----:-----:-----:-----:-----:-----:-----:-----:-----:-----:
-|     |     |     |     |     |     |     |Caill|     |     |
 :-----:-----:-----:-----:-----:-----:-----:-----:-----:-----:
 |     |Caill|     |     |     |     |     |     |     |     |
 :-----:-----:-----:-----:-----:-----:-----:-----:-----:-----:
+|     |     |     |Caill|     |     |     |Arbre|     |     |
+:-----:-----:-----:-----:-----:-----:-----:-----:-----:-----:
 |     |     |     |     |     |     |     |     |     |     |
 :-----:-----:-----:-----:-----:-----:-----:-----:-----:-----:
-|Caill|     |     |     |     |     |     |     |     |Arbre|
+|     |     |Caill|     |     |     |     |     |     |     |
+:-----:-----:-----:-----:-----:-----:-----:-----:-----:-----:
+|     |     |     |Caill|     |     |     |     |     |     |
+:-----:-----:-----:-----:-----:-----:-----:-----:-----:-----:
+|     |     |     |     |     |     |     |     |     |     |
+:-----:-----:-----:-----:-----:-----:-----:-----:-----:-----:
+|     |Roche|     |Roche|     |     |     |     |     |Roche|
+:-----:-----:-----:-----:-----:-----:-----:-----:-----:-----:
+|     |     |Caill|     |Arbre|     |     |Caill|     |     |
 :-----:-----:-----:-----:-----:-----:-----:-----:-----:-----:
 
-Arbre[id:1 quantite: 2]  en position (3, 2)	Roche[id:5 quantite: 4]  en position (2, 9)	Caillou[id:11 quantite: 6]  en position (3, 0)	null	null	null	null	null	null	null	null	null	
+Caillou[id:6 quantite: 6]  en position (9, 7)
+Caillou[id:7 quantite: 6]  en position (9, 2)
+Caillou[id:8 quantite: 6]  en position (3, 3)
+Caillou[id:9 quantite: 6]  en position (5, 2)
+Caillou[id:10 quantite: 6]  en position (6, 3)
+Caillou[id:11 quantite: 6]  en position (2, 1)
+null
+null
+null
+null
+null
+null
+

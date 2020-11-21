@@ -44,7 +44,7 @@ public class Simulation {
         T.affiche();
         // information sur les listes
         for (Ressource r: this.tabRessource){
-            System.out.print(r +"\t");
+            System.out.print(r +"\n");
         }
         System.out.print("\n");
     }
@@ -58,7 +58,7 @@ public class Simulation {
      *
      * @param arrayName Correspond a un tableau de nom à attribuer aux villageois
      */
-    public void initVillageois(String[] arrayName){
+    private void initVillageois(String[] arrayName){
         int taille = arrayName.length;
         this.tabVillageois = new Villageois[taille];
         for (int i=0; i<taille;i++){
@@ -80,34 +80,32 @@ public class Simulation {
      * <li> tabR[i][1] : correspondent aux quantités q des i-ressource.
      * </ul>
      */
-    public void initRandomRessources(String[][] tabR){
+    private void initRandomRessources(String[][] tabR){
         int taille = Bao.NbrRessourceTotale(tabR);
         this.tabRessource = new Ressource[taille];
+        int cptR = 0;                                     // Compteur du nombre de ressource/objet créé(e)s
         for (int i =0; i<tabR.length; i++){
             String nom = tabR[i][0];
             int m = Integer.parseInt(tabR[i][1]);
-            int compteobjet = 0; // Compteur du nombre de ressource/objet créé(e)s
-            while (compteobjet < m) {
+            int cptBoucle = 0;                            // Compteur de boucle
+            while (cptBoucle < m) {
                 // Génération aléatoire des coordonnées et de la quantité des Arbres à créer
-                int x = Bao.NbrAleatoire(0,T.nbLignes); // Valeur aléatoire d'abscisse comprise entre 0 et m
+                int x = Bao.NbrAleatoire(0,T.nbLignes);   // Valeur aléatoire d'abscisse comprise entre 0 et m
                 int y = Bao.NbrAleatoire(0,T.nbColonnes); // Valeur aléatoire d'ordonnée comprise entre 0 et m
-                int q = Bao.NbrAleatoire(1,4); // Valeur aléatoire de quantité comprise entre 1 et 3
-                //System.out.println("TIRÉ AU SORT:"+nom+".x."+x+".y."+y+".q."+q);
+                int q = Bao.NbrAleatoire(1,4);            // Valeur aléatoire de quantité comprise entre 1 et 3
+                System.out.println("TIRÉ AU SORT:"+nom+".x."+x+".y."+y+".q."+q);
 
                 // Vérification si Vide, alors 
                 if (T.caseEstVide(x,y)){
                     Ressource res1 = new Ressource(nom,m);
-                    // Place la ressource sur le terrain
-                    T.setCase(x,y,res1);
-                    // Ajoute la ressource au tableau de ressource
-                    this.tabRessource[i] = res1;
-                    System.out.println(this.tabRessource[i].toString());
-                    //System.out.println(" AJOUTÉ :"+nom+".x."+x+".y."+y+".q."+q);
-                    // incrémentation du compteur de ressource
-                    compteobjet++ ;
+                    T.setCase(x,y,res1);                   // Place la ressource sur le terrain
+                    this.tabRessource[cptR] = res1;   // Ajoute la ressource au tableau de ressource
+                    System.out.println(" AJOUT :"+this.tabRessource[i].toString());
+                    cptR++;                                // incrémentation du compteur de ressource
+                    cptBoucle++ ;                          // incrémentation du compteur de boucle
                 }
                 else{
-                    //System.out.println("...Case non vide, recherche d'un autre emplacement...");
+                    System.out.println("...Case non vide, recherche d'un autre emplacement...");
                 }
             }
             System.out.println("..."+m+" ressources "+nom+" ont été ajoutées...");
