@@ -8,6 +8,11 @@ doc/*
 # Compiled class file
 #*.class
 
+#Ignorer SWAP-FILES (fichiers de sauvegarde)
+*~
+*.swo
+*.swp
+
 # Log file
 *.log
 
