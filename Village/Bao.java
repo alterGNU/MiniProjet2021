@@ -13,8 +13,8 @@ public class Bao {
      * @param max Correspond à la borne supérieur de l'intervalle dans lequel générer les entiers aléatoirement
      * retournés
      */
-    public static int NbrAlea(int max){
-        return ((int) (Math.random() * (max)));
+    public static int NbrAlea(int min,int max){
+        return ((int) (Math.random() * (max - min) + min));
     }
 
     ///** Methode permettant d'afficher le contenu d'un tableau d'objet

@@ -14,7 +14,12 @@ public class TestSimulation {
         Simulation S1 = new Simulation(ressource,nom);
         S1.phaseInit();
 
-        /*
+
+        /* Ensemble de test à supprimer par la suite
+        // Test fonction utilitaire NrbAlea
+        for (int i=0; i<25;i++){
+            System.out.println(Bao.NbrAlea(1,4));
+        }
         // Test des methodes public de villageois
         System.out.println("Il y a actuellement "+Villageois.getCpt()+" Villageois");
         Villageois v1 = new Villageois("bob");

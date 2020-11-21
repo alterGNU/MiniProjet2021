@@ -76,9 +76,9 @@ public class Simulation {
             int compteobjet = 0; // Compteur du nombre de ressource/objet créé(e)s
             while (compteobjet < m) {
                 // Génération aléatoire des coordonnées et de la quantité des Arbres à créer
-                int x = Bao.NbrAlea(T.nbLignes); // Valeur aléatoire d'abscisse comprise entre 0 et m
-                int y = Bao.NbrAlea(T.nbColonnes); // Valeur aléatoire d'ordonnée comprise entre 0 et m
-                int q = Bao.NbrAlea(3)+1; // Valeur aléatoire de quantité comprise entre 1 et 3
+                int x = Bao.NbrAlea(0,T.nbLignes); // Valeur aléatoire d'abscisse comprise entre 0 et m
+                int y = Bao.NbrAlea(0,T.nbColonnes); // Valeur aléatoire d'ordonnée comprise entre 0 et m
+                int q = Bao.NbrAlea(1,4); // Valeur aléatoire de quantité comprise entre 1 et 3
                 //System.out.println("TIRÉ AU SORT:"+nom+".x."+x+".y."+y+".q."+q);
 
                 // Vérification si Vide, alors 
