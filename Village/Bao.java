@@ -14,7 +14,16 @@ public class Bao {
      * retournés
      */
    public static int NbrAlea(int max){
-       return (1 + (int) (Math.random() * (max)));
+       //return (1 + (int) (Math.random() * (max)));
+       return ((int) (Math.random() * (max)));
    }
+   
+   //Loop permettant d'afficher un tableau de string
+   //for (String[] tab: ressource){
+   //    for (String s: tab){
+   //        System.out.print(s + "\t");
+   //    }
+   //    System.out.println("\n");
+   //}
 
 }

@@ -1,5 +1,3 @@
-import java.util.ArrayList; // pour faire des tableaux à taille variable
-
 /**
  * @author Laurent GRONDIN
  * 
@@ -9,11 +7,14 @@ public class TestSimulation {
      * @param args
      */
     public static void main(String[] args) {
-        String[][] tab1 = {{"fer",3},{"arbre",3]}};
-        List
-        Simulation S1 = new Simulation(tab1,);
+        
+        String[][] ressource={{"Arbre","2"},{"Roche","4"},{"Caillou","6"}};
+        String[] nom={"Bob","Sam"};
+
+        Simulation S1 = new Simulation(ressource,nom);
         S1.phaseInit();
 
+        /*
         // Test des methodes public de villageois
         System.out.println("Il y a actuellement "+Villageois.getCpt()+" Villageois");
         Villageois v1 = new Villageois("bob");
@@ -33,6 +34,6 @@ public class TestSimulation {
         System.out.println(v3.toString());
         System.out.println("Il y a actuellement "+Villageois.getCpt()+" Villageois");
         System.out.println("La distance séparant "+v1.getName()+" et "+v3.getName()+" vaut: "+v1.distance(v3.getX(),v3.getY()));
-    }
+        */
     }
 }

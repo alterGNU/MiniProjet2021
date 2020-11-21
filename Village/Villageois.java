@@ -57,5 +57,4 @@ public class Villageois{
         int distance =(int) Math.sqrt((xlong)*(xlong) +(ylong)*(ylong));
         return distance;
     }
-    
 }
