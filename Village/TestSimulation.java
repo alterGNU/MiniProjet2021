@@ -9,7 +9,7 @@ public class TestSimulation {
     public static void main(String[] args) {
         
         String[][] ressource={{"Arbre","2"},{"Roche","4"},{"Caillou","6"}};
-        String[] nom={"Bob","Sam"};
+        String[] nom={"Bob","Sam","Thierry"};
 
         Simulation S1 = new Simulation(ressource,nom);
         S1.phaseInit();

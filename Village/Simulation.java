@@ -4,13 +4,15 @@
  *
  * @param T : Correspond au terrain sur lequel effectuer la simulation
  * @param tabRessource : Tableau contenant le nom et le nombre de ressources à ajouter au terrain
- * @param listVillageois : Liste contenant les noms (et donc le nombre) des Villageois 
+ * @param tabnom : Tableau contenant les noms (et donc le nombre) des Villageois à créer
+ * @param tabVillageois : Tableau de villageois
  */
 public class Simulation {
 
     private final Terrain T = new Terrain(10,10);
     private String[][] tabRessource;
-    private String[] tabVillageois;
+    private String[] tabnom;
+    private Villageois[] tabVillageois;
 
     /** Constructeur de Simulation.
      * Les simulations partage toutes un même terrain
@@ -21,20 +23,43 @@ public class Simulation {
      */
     public Simulation(String[][] tab,String[] tabnom){
         this.tabRessource=tab;
-        this.tabVillageois=tabnom;
+        this.tabnom=tabnom;
     }
 
     public void phaseInit(){
         
         System.out.println("PHASE 1:Initialisation de l'environnement:");
 
-        // Initialisation : Créer l'environnement
+        // Initialisation : Génére aléatoirement des cases sur lesquelles placer les ressources à partir d'un tableau de
+        // ressource
         initRandomRessources(this.tabRessource) ;
-
+        // Initialisation : Créer les villageois à partir d'un tableau de nom
+        initVillageois(this.tabnom);
         // Affichage du terrain avec les ressources ajoutées
         System.out.println("Informations sur le terrain:\n"+T);
         T.affiche();
     }
+
+
+    /** Initialisation des villageois:
+     *   - 1 Créer les villageois à partir du tableau d'un tableau de nom
+     * <ul>
+     * <li> Créer les villageois à partir d'un tableau de nom
+     * <li> Créer un tableau de villageois
+     * </ul>
+     *
+     * @param tabnom Correspond a un tableau de nom à attribuer aux villageois
+     */
+    public void initVillageois(String[] tabnom){
+       int taille = tabnom.length;
+        Villageois tabVillageois[] = new Villageois[taille];
+        for (int i=0; i<taille;i++){
+        tabVillageois[i] = new Villageois(tabnom[i]);
+        System.out.println(tabVillageois[i].toString());
+        }
+        System.out.println(Villageois.getCpt()+" villageois on été créé.");
+    }
+
 
     /** Permet de placer aléatoirement un nombre donné d'un type de ressource sur un Terrain.
      *

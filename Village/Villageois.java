@@ -8,14 +8,14 @@
 public class Villageois{
     // Tout villageois à pour coordonnée de départ la case village (0:0)
     private String nom ; 
-    private int px = 0; 
-    private int py = 0;
+    private int px = -1; 
+    private int py = -1;
     private static int cpt = 0;
 
     /** Constructeur de Villageois.
      * Chaque villeagois nés au village(point de coordonnée 0.0) ainsi à sa création, seul son nom est demandé
      *
-     * @param nom : Correspond au nom du villageois
+     * @param name : Correspond au nom du villageois
      */
     public Villageois(String name){
         this.nom=name;
