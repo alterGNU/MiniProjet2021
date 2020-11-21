@@ -16,8 +16,8 @@ public class Simulation {
     private Terrain T ;
     private String[][] tabInitRessource;
     private String[] tabnom;
-    private Villageois[] tabVillageois;
-    private Ressource[] tabRessource;
+    static Villageois[] tabVillageois; // static juste le temps des tests!!!!à remettre en PRIVATE en suite!!!! 
+    static Ressource[] tabRessource;   // static juste le temps des tests!!!!à remettre en PRIVATE en suite!!!! 
 
     /** Constructeur de Simulation.
      * Les simulations partage toutes un même terrain
@@ -50,16 +50,16 @@ public class Simulation {
         System.out.println("Informations sur le terrain:\n"+T);
         T.affiche();
        
-        // information sur les listes
-        System.out.println("\nCONTENU LIST DE RESSOURCE\n");
-        for (Ressource r: this.tabRessource){
-            System.out.print(r +"\n");
-        }
-        System.out.println("\nCONTENU LIST DE VILLAGEOIS\n");
-        for (Villageois r: this.tabVillageois){
-            System.out.print(r +"\n");
-        }
-        System.out.print("\n");
+        //// information sur les listes
+        //System.out.println("\nCONTENU LIST DE RESSOURCE\n");
+        //for (Ressource r: this.tabRessource){
+        //    System.out.print(r +"\n");
+        //}
+        //System.out.println("\nCONTENU LIST DE VILLAGEOIS\n");
+        //for (Villageois r: this.tabVillageois){
+        //    System.out.print(r +"\n");
+        //}
+        //System.out.print("\n");
     }
 
 
@@ -105,19 +105,15 @@ public class Simulation {
                 int x = Bao.nbrAleatoire(0,T.nbLignes);   // Valeur aléatoire d'abscisse comprise entre 0 et m
                 int y = Bao.nbrAleatoire(0,T.nbColonnes); // Valeur aléatoire d'ordonnée comprise entre 0 et m
                 int q = Bao.nbrAleatoire(1,4);            // Valeur aléatoire de quantité comprise entre 1 et 3
-                System.out.println("TIRÉ AU SORT:"+nom+".x."+x+".y."+y+".q."+q);
 
                 // Vérification si Vide, alors 
                 if (T.caseEstVide(x,y)){
                     Ressource res1 = new Ressource(nom,q);
                     T.setCase(x,y,res1);                   // Place la ressource sur le terrain
                     this.tabRessource[cptR] = res1;   // Ajoute la ressource au tableau de ressource
-                    System.out.println(" AJOUT :"+this.tabRessource[i].toString());
+                    System.out.println(" AJOUT :"+this.tabRessource[cptR].toString());
                     cptR++;                                // incrémentation du compteur de ressource
                     cptBoucle++ ;                          // incrémentation du compteur de boucle
-                }
-                else{
-                    System.out.println("...Case non vide, recherche d'un autre emplacement...");
                 }
             }
             System.out.println("..."+m+" ressources "+nom+" ont été ajoutées...");

@@ -30,6 +30,20 @@ public class Bao {
         return total;
     }
 
+    /** Permet de calculer la distance, en nombre de déplacement, entre le village est une case du terrain
+     * On décide de placer le village à la case (-1,-1), il se trouve donc à l'exterieur du terrain
+     * @param x Correspond à l'abscisse de la case
+     * @param y Correspond à l'ordonnée de la case
+     */ 
+    public static int distVillage(int x,int y){return 1+x+y;}
+
+    /** Permet de calculer la distance la plus courte possible entre le village est une case du terrain(en nombre de
+     * déplacement)
+     * @param x Correspond à l'abscisse de la case
+     * @param y Correspond à l'ordonnée de la case
+     */ 
+    public static int distVillageOpti(int x,int y){return (Math.min(x,y)+1);}
+
     /** Permet de calculer le nombre total de ressource à créer à partir du tableau d'initialisation de ressource
      * 
      * @param stab Correspond au tableau d'initialisation des ressources (Tableau de String à deux dimensions)
