@@ -16,8 +16,8 @@ public class Simulation {
     private Terrain T ;
     private String[][] tabInitRessource;
     private String[] tabnom;
-    static Villageois[] tabVillageois; // static juste le temps des tests!!!!à remettre en PRIVATE en suite!!!! 
-    static Ressource[] tabRessource;   // static juste le temps des tests!!!!à remettre en PRIVATE en suite!!!! 
+    static Villageois[] tabVillageois; // AREMETTRE EN PRIVATE!!!!
+    private Ressource[] tabRessource;   
 
     /** Constructeur de Simulation.
      * Les simulations partage toutes un même terrain
@@ -30,6 +30,14 @@ public class Simulation {
         this.T=ter1;
         this.tabInitRessource=tab;
         this.tabnom=tabnom;
+    }
+
+    /** Calcul la quantité totale de ressource disponible sur le terrain
+    */
+    public int qTotRessource(){
+        int total=0;
+        for (Ressource r: this.tabRessource){ total+=r.getQuantite(); }
+        return total;
     }
 
     /** Methode de lancement de la phase d'initialisation de l'environnement
@@ -50,16 +58,6 @@ public class Simulation {
         System.out.println("Informations sur le terrain:\n"+T);
         T.affiche();
        
-        //// information sur les listes
-        //System.out.println("\nCONTENU LIST DE RESSOURCE\n");
-        //for (Ressource r: this.tabRessource){
-        //    System.out.print(r +"\n");
-        //}
-        //System.out.println("\nCONTENU LIST DE VILLAGEOIS\n");
-        //for (Villageois r: this.tabVillageois){
-        //    System.out.print(r +"\n");
-        //}
-        //System.out.print("\n");
     }
 
 
@@ -119,4 +117,5 @@ public class Simulation {
             System.out.println("..."+m+" ressources "+nom+" ont été ajoutées...");
         }
     }
+
 }
