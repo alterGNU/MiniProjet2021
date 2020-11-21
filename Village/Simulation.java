@@ -42,6 +42,11 @@ public class Simulation {
         // Affichage du terrain avec les ressources ajoutées
         System.out.println("Informations sur le terrain:\n"+T);
         T.affiche();
+        // information sur les listes
+        for (Ressource r: this.tabRessource){
+            System.out.print(r +"\t");
+        }
+        System.out.print("\n");
     }
 
 
@@ -76,17 +81,17 @@ public class Simulation {
      * </ul>
      */
     public void initRandomRessources(String[][] tabR){
-        int taille = tabR.length; // récupére la taille, et donc le nombre de ressource à creer (pas la quantité)
+        int taille = Bao.NbrRessourceTotale(tabR);
         this.tabRessource = new Ressource[taille];
-        for (int i =0; i<taille; i++){
+        for (int i =0; i<tabR.length; i++){
             String nom = tabR[i][0];
             int m = Integer.parseInt(tabR[i][1]);
             int compteobjet = 0; // Compteur du nombre de ressource/objet créé(e)s
             while (compteobjet < m) {
                 // Génération aléatoire des coordonnées et de la quantité des Arbres à créer
-                int x = Bao.NbrAlea(0,T.nbLignes); // Valeur aléatoire d'abscisse comprise entre 0 et m
-                int y = Bao.NbrAlea(0,T.nbColonnes); // Valeur aléatoire d'ordonnée comprise entre 0 et m
-                int q = Bao.NbrAlea(1,4); // Valeur aléatoire de quantité comprise entre 1 et 3
+                int x = Bao.NbrAleatoire(0,T.nbLignes); // Valeur aléatoire d'abscisse comprise entre 0 et m
+                int y = Bao.NbrAleatoire(0,T.nbColonnes); // Valeur aléatoire d'ordonnée comprise entre 0 et m
+                int q = Bao.NbrAleatoire(1,4); // Valeur aléatoire de quantité comprise entre 1 et 3
                 //System.out.println("TIRÉ AU SORT:"+nom+".x."+x+".y."+y+".q."+q);
 
                 // Vérification si Vide, alors 

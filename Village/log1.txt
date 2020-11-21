@@ -1,0 +1,45 @@
+PHASE 1:Initialisation de l'environnement:
+Arbre[id:0 quantite: 2]  en position (9, 9)
+Arbre[id:1 quantite: 2]  en position (3, 2)
+...2 ressources Arbre ont été ajoutées...
+Roche[id:2 quantite: 4]  en position (2, 5)
+Roche[id:3 quantite: 4]  en position (4, 3)
+Roche[id:4 quantite: 4]  en position (4, 2)
+Roche[id:5 quantite: 4]  en position (2, 9)
+...4 ressources Roche ont été ajoutées...
+Caillou[id:6 quantite: 6]  en position (4, 6)
+Caillou[id:7 quantite: 6]  en position (9, 0)
+Caillou[id:8 quantite: 6]  en position (6, 7)
+Caillou[id:9 quantite: 6]  en position (4, 8)
+Caillou[id:10 quantite: 6]  en position (7, 1)
+Caillou[id:11 quantite: 6]  en position (3, 0)
+...6 ressources Caillou ont été ajoutées...
+Villageois Bob est dans la case (-1:-1)
+Villageois Sam est dans la case (-1:-1)
+Villageois Thierry est dans la case (-1:-1)
+3 villageois on été créé.
+Informations sur le terrain:
+Terrain de 10x10 cases: il y a 12 cases occupées.
+:-----:-----:-----:-----:-----:-----:-----:-----:-----:-----:
+|     |     |     |     |     |     |     |     |     |     |
+:-----:-----:-----:-----:-----:-----:-----:-----:-----:-----:
+|     |     |     |     |     |     |     |     |     |     |
+:-----:-----:-----:-----:-----:-----:-----:-----:-----:-----:
+|     |     |     |     |     |Roche|     |     |     |Roche|
+:-----:-----:-----:-----:-----:-----:-----:-----:-----:-----:
+|Caill|     |Arbre|     |     |     |     |     |     |     |
+:-----:-----:-----:-----:-----:-----:-----:-----:-----:-----:
+|     |     |Roche|Roche|     |     |Caill|     |Caill|     |
+:-----:-----:-----:-----:-----:-----:-----:-----:-----:-----:
+|     |     |     |     |     |     |     |     |     |     |
+:-----:-----:-----:-----:-----:-----:-----:-----:-----:-----:
+|     |     |     |     |     |     |     |Caill|     |     |
+:-----:-----:-----:-----:-----:-----:-----:-----:-----:-----:
+|     |Caill|     |     |     |     |     |     |     |     |
+:-----:-----:-----:-----:-----:-----:-----:-----:-----:-----:
+|     |     |     |     |     |     |     |     |     |     |
+:-----:-----:-----:-----:-----:-----:-----:-----:-----:-----:
+|Caill|     |     |     |     |     |     |     |     |Arbre|
+:-----:-----:-----:-----:-----:-----:-----:-----:-----:-----:
+
+Arbre[id:1 quantite: 2]  en position (3, 2)	Roche[id:5 quantite: 4]  en position (2, 9)	Caillou[id:11 quantite: 6]  en position (3, 0)	null	null	null	null	null	null	null	null	null	

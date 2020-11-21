@@ -13,13 +13,24 @@ public class TestSimulation {
 
         Simulation S1 = new Simulation(ressource,nom);
         S1.phaseInit();
+        //S1.phaseRecolte();
 
 
         /* Ensemble de test à supprimer par la suite
-        // Test fonction utilitaire NrbAlea
+        // ########TEST BAO ########
+        // Test Bao.NrbAlea
         for (int i=0; i<25;i++){
             System.out.println(Bao.NbrAlea(1,4));
         }
+
+        // Test Bao.SommeTabEntier
+        int[] tab1={1,2,3,4};
+        
+        // Test Bao.NbrRessourceTotale
+        System.out.println("Le tableau de ressource doit contenir :"+ Bao.NbrRessourceTotale(ressource) +" cases");
+       
+        // ########TEST VILLAGEOIS######
+        System.out.println("La somme du contenu du tableau tab1 est :"+ Bao.SommeTabEntier(tab1));
         // Test des methodes public de villageois
         System.out.println("Il y a actuellement "+Villageois.getCpt()+" Villageois");
         Villageois v1 = new Villageois("bob");
