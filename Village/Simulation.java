@@ -1,6 +1,8 @@
 /** Lance les différentes phase composant la simulation:
- *      - Phase d'initialisation
- *      - Phase de récolte
+ * <ul>
+ * <li> Phase d'initialisation
+ * <li> Phase de récolte
+ * </ul>
  *
  * @param T : Correspond au terrain sur lequel effectuer la simulation
  * @param tabRessource : Tableau contenant le nom et le nombre de ressources à ajouter au terrain
@@ -30,10 +32,10 @@ public class Simulation {
         
         System.out.println("PHASE 1:Initialisation de l'environnement:");
 
-        // Initialisation : Génére aléatoirement des cases sur lesquelles placer les ressources à partir d'un tableau de
-        // ressource
+        // PHASE Initialisation : 
+        // Génére aléatoirement des cases sur lesquelles placer les ressources à partir d'un tableau de ressource
         initRandomRessources(this.tabRessource) ;
-        // Initialisation : Créer les villageois à partir d'un tableau de nom
+        // Créer les villageois à partir d'un tableau de nom et créer un tableau de villageois
         initVillageois(this.tabnom);
         // Affichage du terrain avec les ressources ajoutées
         System.out.println("Informations sur le terrain:\n"+T);
@@ -42,21 +44,22 @@ public class Simulation {
 
 
     /** Initialisation des villageois:
-     *   - 1 Créer les villageois à partir du tableau d'un tableau de nom
      * <ul>
      * <li> Créer les villageois à partir d'un tableau de nom
      * <li> Créer un tableau de villageois
      * </ul>
      *
-     * @param tabnom Correspond a un tableau de nom à attribuer aux villageois
+     * @param arrayName Correspond a un tableau de nom à attribuer aux villageois
      */
-    public void initVillageois(String[] tabnom){
-       int taille = tabnom.length;
-        Villageois tabVillageois[] = new Villageois[taille];
+    public void initVillageois(String[] arrayName){
+        int taille = arrayName.length;
+        Villageois tabinter[] = new Villageois[taille];
         for (int i=0; i<taille;i++){
-        tabVillageois[i] = new Villageois(tabnom[i]);
-        System.out.println(tabVillageois[i].toString());
+            tabinter[i] = new Villageois(arrayName[i]);
+            System.out.println(tabinter[i].toString());
         }
+        
+        // Affichage du nombre de villageois créé
         System.out.println(Villageois.getCpt()+" villageois on été créé.");
     }
 
@@ -73,9 +76,9 @@ public class Simulation {
             int compteobjet = 0; // Compteur du nombre de ressource/objet créé(e)s
             while (compteobjet < m) {
                 // Génération aléatoire des coordonnées et de la quantité des Arbres à créer
-                int x = Bao.NbrAlea(T.nbLignes); // Valeur aléatoire d'abscisse comprise entre 1 et m
-                int y = Bao.NbrAlea(T.nbColonnes); // Valeur aléatoire d'ordonnée comprise entre 1 et m
-                int q = Bao.NbrAlea(3); // Valeur aléatoire de quantité comprise entre 1 et 3
+                int x = Bao.NbrAlea(T.nbLignes); // Valeur aléatoire d'abscisse comprise entre 0 et m
+                int y = Bao.NbrAlea(T.nbColonnes); // Valeur aléatoire d'ordonnée comprise entre 0 et m
+                int q = Bao.NbrAlea(3)+1; // Valeur aléatoire de quantité comprise entre 1 et 3
                 //System.out.println("TIRÉ AU SORT:"+nom+".x."+x+".y."+y+".q."+q);
 
                 // Vérification si Vide, alors 
