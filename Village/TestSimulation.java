@@ -24,21 +24,21 @@ public class TestSimulation {
         // #########PHASE RECOLTE
         int t = 0; // Compteur de tour
         int ressourceDispo=S1.qTotRessource();
-        System.out.print("Il y a "+ressourceDispo+" pierres précieuses sur le terrain\n");
+        System.out.print("Il y a "+ressourceDispo+" pépites d'or sur le terrain\n");
         while (ressourceDispo>0){
             System.out.print("tour "+t+":\n");
             ressourceDispo=S1.qTotRessource();
-            for (Villageois V: Simulation.tabVillageois){
-                S1.rechercheRecolte(V);
+            for (Mineur M: Simulation.tabMineur){
+                S1.rechercheRecolte(M);
             }
             t++;
             System.out.print("----\n");
 
         // ##########PHASE BILAN ##############
         }
-        System.out.print("Il a fallut "+t+" tour pour récolter l'intégralité des ressources\n");
-        for (Villageois V: S1.tabVillageois){
-        System.out.print(V.toString()+"\n");
+        System.out.print("Il a fallut "+t+" tour pour récolter l'intégralité des pépites d'or\n");
+        for (Mineur M: S1.tabMineur){
+            System.out.print(M.toString()+"\n");
         }
     }
 }

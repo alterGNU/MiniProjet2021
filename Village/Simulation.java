@@ -6,8 +6,8 @@
  *
  * @param T : Correspond au terrain sur lequel effectuer la simulation
  * @param tabInitRessource : Tableau contenant le nom et le nombre de ressources à ajouter au terrain
- * @param tabnom : Tableau contenant les noms (et donc le nombre) des Villageois à créer
- * @param tabVillageois : Tableau d'objet:Villageois
+ * @param tabnom : Tableau contenant les noms (et donc le nombre) des Mineur à créer
+ * @param tabMineur : Tableau d'objet:Mineur
  * @param tabRessource : Tableau d'objet:Ressource
  */
 public class Simulation {
@@ -16,7 +16,7 @@ public class Simulation {
     private Terrain T ;
     private String[][] tabInitRessource;
     private String[] tabnom;
-    static Villageois[] tabVillageois; // A REMETTRE EN PRIVATE!!!!
+    static Mineur[] tabMineur; // A REMETTRE EN PRIVATE!!!!
     static Ressource[] tabRessource;   // A REMETTRE EN PRIVATE!!!!
 
     /** Constructeur de Simulation.
@@ -43,7 +43,7 @@ public class Simulation {
     /** Methode de lancement de la phase d'initialisation de l'environnement
      *
      * <li> Initialise les ressources via à la méthode initRandomRessources
-     * <li> Initialise les villageois via la méthode initVillageois
+     * <li> Initialise les Mineur via la méthode initMineur
      */
     public void phaseInit(){
         
@@ -52,8 +52,8 @@ public class Simulation {
         // PHASE Initialisation : 
         // Génére aléatoirement des cases sur lesquelles placer les ressources à partir d'un tableau de ressource
         initRandomRessources(this.tabInitRessource) ;
-        // Créer les villageois à partir d'un tableau de nom et créer un tableau de villageois
-        initVillageois(this.tabnom);
+        // Créer les Mineur à partir d'un tableau de nom et créer un tableau de Mineur
+        initMineur(this.tabnom);
         // Affichage du terrain avec les ressources ajoutées
         System.out.println("Informations sur le terrain:\n"+T);
         T.affiche();
@@ -61,23 +61,23 @@ public class Simulation {
     }
 
 
-    /** Initialisation des villageois:
+    /** Initialisation des Mineur:
      * <ul>
-     * <li> Créer les villageois à partir d'un tableau de nom
-     * <li> Créer un tableau d'objet:Villageois
+     * <li> Créer les Mineur à partir d'un tableau de nom
+     * <li> Créer un tableau d'objet:Mineur
      * </ul>
-     * @param arrayName Correspond a un tableau de nom à attribuer aux villageois
+     * @param arrayName Correspond a un tableau de nom à attribuer aux Mineur
      */
-    private void initVillageois(String[] arrayName){
+    private void initMineur(String[] arrayName){
         int taille = arrayName.length;
-        this.tabVillageois = new Villageois[taille];
+        this.tabMineur = new Mineur[taille];
         for (int i=0; i<taille;i++){
-            this.tabVillageois[i] = new Villageois(arrayName[i]);
-            System.out.println(this.tabVillageois[i].toString());
+            this.tabMineur[i] = new Mineur(arrayName[i]);
+            System.out.println(this.tabMineur[i].toString());
         }
         
-        // Affichage du nombre de villageois créé
-        System.out.println(Villageois.getCpt()+" villageois on été créé.");
+        // Affichage du nombre de Mineur créé
+        System.out.println(Mineur.getCpt()+" Mineur on été créé.");
     }
 
 
@@ -118,12 +118,12 @@ public class Simulation {
         }
     }
 
-    public void rechercheRecolte(Villageois Vil){
+    public void rechercheRecolte(Mineur Vil){
         if ( Vil.getX() == -1 && Vil.getY() == -1){
             System.out.println(Vil.getName()+" est au village...il en sort!\n");
             Vil.seDeplacer(0,0);
         }else if ( ! T.caseEstVide(Vil.getX(),Vil.getY())){        // Si la case sur laquelle il se trouve est non vide...
-            Vil.recolte(T.getCase(Vil.getX(),Vil.getY()));       // Mettre dans le sac du villageois la ressource...
+            Vil.recolte(T.getCase(Vil.getX(),Vil.getY()));       // Mettre dans le sac du Mineur la ressource...
             System.out.println(Vil.getName()+" à récolté en ("+Vil.getX()+","+Vil.getY()+") "+Vil.getSac()+"");
             T.videCase(Vil.getX(),Vil.getY());                   // Vider la case
             //T.affiche();
