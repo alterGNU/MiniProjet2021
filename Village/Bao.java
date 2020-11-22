@@ -17,6 +17,16 @@ public class Bao {
         return ((int) (Math.random() * (max - min) + min));
     }
 
+    /** Permet de retourner True si le numero passé en premier argument est dans l'intervall former par les deux autres
+     * 
+     * @param x Entier dont on cherche à determiner s'il se trouve dans l'intervalle donnée
+     * @param a Borne inférieur de l'intervalle
+     * @param b Borne supérieur de l'intervalle
+     */ 
+    public static boolean estEntre(int x, int a, int b){
+        return ((a <= x) && (x <= b));
+    }
+
     /** Permet de calculer la somme du contenu d'un tableau d'entier
      * 
      * @param itab Tableau d'entier

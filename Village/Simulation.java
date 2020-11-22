@@ -135,13 +135,22 @@ public class Simulation {
     private void recolte(Mineur Min1){
         int x = Min1.getX();
         int y = Min1.getY();
-        Ressource R=T.getCase(x,y);                        // Mettre dans le sac Min1lagedu Mineur la ressource...
-        System.out.println(Min1.getName()+" est tombé sur ("+T.getCase(x,y)+", il pioche!");
-        Min1.setSac(Min1.getSac() + R.getQuantite());      // Remplis le sac du mineur avec la quantité d'or trouvé
-        orTot-= R.getQuantite();                           // Décrémente la var indiquant le nombre d'or présent sur terrain
-        System.out.println(Min1.getName()+" à récolté "+T.getCase(x,y).getQuantite()+" pépites d'or en ("+x+","+y+"), ce qui lui fait un total de "+Min1.getSac()+" pépites d'or!");
-        R.setQuantite(0);                                  // Place la quantité de la ressource à zéro
-        T.videCase(x,y);                                   // Vider la case
+        Ressource R=T.getCase(x,y);                        // Mettre dans le sac du Mineur la ressource...
+        if (Bao.estEntre(R.getQuantite(),2,20)){           // Si la quantité est comprise entre [1;20]
+        System.out.println(Min1.getName()+" est tombé sur ("+R.toString()+", il pioche!");
+        Min1.setSac(Min1.getSac() + 1 );                   // Remplis le sac du mineur avec la quantité d'or trouvé
+        R.setQuantite(R.getQuantite() - 1);                // Place la quantité de la ressource à zéro
+        orTot--;                                           // Décrémente la var donnant le nombre d'or présent sur terrain
+        System.out.println(Min1.getName()+" à récolté 1 pépite d'or en ("+x+","+y+"), ce qui lui fait un total de "+Min1.getSac()+" pépites d'or!");
+        }else{                      // Quand c'est la dernière pépite alors...
+            System.out.println(Min1.getName()+" est tombé sur ("+R.toString()+", il pioche!");
+            Min1.setSac(Min1.getSac() + 1 );               // Remplis le sac du mineur avec la quantité d'or trouvé
+            R.setQuantite(R.getQuantite() - 1);            // Place la quantité de la ressource à zéro
+            orTot--;                                       // Décrémente la var donnant le nombre d'or présent sur terrain
+            System.out.println(Min1.getName()+" à récolté 1 pépite d'or en ("+x+","+y+"), ce qui lui fait un total de "+Min1.getSac()+" pépites d'or!");
+            System.out.println("il n'y a plus rien ici...hormis quelques gravats!");
+            T.videCase(x,y);                               // Vider la case +++ TRANSFORMER ++++ CLONE +++++
+        }
     }
 
     /** Définie l'ensemble des actions possible pour un mineur pendant un tour de la phase de recherche et recolte
@@ -159,7 +168,8 @@ public class Simulation {
                     System.out.println(M.getName()+" est au Village...il en sort!");
                     M.seDeplacer(0,0);
                     System.out.println(M.getName()+" s'est déplacé en ("+M.getX()+","+M.getY()+")");
-                }else if ( ! T.caseEstVide(posx,posy)){    // S'IL EST SUR UNE CASE NON VIDE-->RECOLTE
+                // S'IL EST SUR UNE CASE NON VIDE -->RECOLTE
+                }else if ((! T.caseEstVide(posx,posy))){
                     recolte(M);
                 }
                 else{                                      // S'IL EST SUR UNE CASE VIDE-->SE DEPLACE DE 1 CASE
