@@ -18,7 +18,7 @@ public class Simulation {
     private String[][] tabInitRessource;
     private String[] tabnom;
     private static int orTot;
-    static Mineur[] tabMineur; // A REMETTRE EN PRIVATE!!!!
+    private Mineur[] tabMineur; // A REMETTRE EN PRIVATE!!!!
     private Ressource[] tabRessource;
 
     /** Constructeur de Simulation.

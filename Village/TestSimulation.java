@@ -46,9 +46,9 @@ public class TestSimulation {
         System.out.print("Il n'y a plus de pépites d'or disponible sur le terrain!\nFIN DE LA RECOLTE\n\n");
         // PHASE 3 BILAN
         System.out.println("PHASE 3: BILAN");
-        T.toString();
-        T.affiche();
-        System.out.print("Il a fallut "+t+" tour pour récolter l'intégralité des pépites d'or\n");
+        T.toString();                                      // Affichage des infos du tableau 
+        T.affiche();                                       // Affichage du tableau pour s'assurer qu'il soit vide
+        System.out.print("Il a fallut "+t+" tour pour récolter l'intégralité des pépites d'or:\n");
         S1.afficheTabMineur();
     }
 } 
