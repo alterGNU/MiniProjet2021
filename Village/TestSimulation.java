@@ -19,26 +19,31 @@ public class TestSimulation {
         String[] nom={"Bob","Sam"};
 
         Simulation S1 = new Simulation(T,ressource,nom);
+       
+        // PHASE INITIALISATION
         S1.phaseInit();
+        S1.setorTot(S1.qTotRessource());
 
-        // #########PHASE RECOLTE
+        // PHASE RECOLTE
         int t = 0; // Compteur de tour
-        int ressourceDispo=S1.qTotRessource();
-        System.out.print("Il y a "+ressourceDispo+" pépites d'or sur le terrain\n");
-        while (ressourceDispo>0){
+        System.out.print("Il y a "+S1.getorTot()+" pépites d'or sur le terrain\n");
+        while (S1.getorTot()>0){
             System.out.print("tour "+t+":\n");
-            ressourceDispo=S1.qTotRessource();
             for (Mineur M: Simulation.tabMineur){
-                S1.rechercheRecolte(M);
-            }
-            t++;
-            System.out.print("----\n");
+                if (S1.getorTot()<=0){
+                    break;
+                }else{
+                    S1.recherchePiocheRecolte(M);
+                }
+                t++;
+                System.out.print("----\n");
 
-        // ##########PHASE BILAN ##############
-        }
-        System.out.print("Il a fallut "+t+" tour pour récolter l'intégralité des pépites d'or\n");
-        for (Mineur M: S1.tabMineur){
-            System.out.print(M.toString()+"\n");
+            }
+            // PHASE BILAN
+            System.out.print("Il a fallut "+t+" tour pour récolter l'intégralité des pépites d'or\n");
+            for (Mineur M: S1.tabMineur){
+                System.out.print(M.toString()+"\n");
+            }
         }
     }
-}
+} 

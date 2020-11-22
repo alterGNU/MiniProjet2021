@@ -4,6 +4,7 @@
  * @param px : abscisse initiale d'un Mineur à sa création
  * @param py : ordonnée initiale d'un Mineur à sa création
  * @param cpt : Compteur du nombre de Mineur crée
+ * @param sac : Affiche le nombre de pépite d'or contenu dans le sac du mineur
  */
 public class Mineur{
     // Tout Mineur à pour coordonnée de départ la case village (0:0)
@@ -33,6 +34,10 @@ public class Mineur{
     public static int getCpt(){ return cpt;}
     /** Récupère le contenue du sac du Mineur */
     public int getSac(){ return sac;}
+    /** Modifie le contenu du sac du Mineur par l'entier passé en paramètre */
+    public void setSac(int newsac){ 
+        sac = newsac;
+    }
     /** Retourne la nom et la position du Mineur sur le terrain */
     public String toString(){
         return "Mineur "+nom+" est dans la case ("+px+":"+py+") et à dans son sac "+sac+" pépites d'Or.";
@@ -58,15 +63,6 @@ public class Mineur{
         int ylong = Math.abs(this.py - y);
         int distance =(int) Math.sqrt((xlong)*(xlong) +(ylong)*(ylong));
         return distance;
-    }
-
-    /** Récolte les ressources (les places dans le sac du Mineur
-     *
-     * @param ress ressource à recolter
-     */
-    public void recolte(Ressource ress){
-        this.sac += ress.getQuantite();
-        ress.setQuantite(0);
     }
 
 }

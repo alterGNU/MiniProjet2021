@@ -1,7 +1,7 @@
 /** Lance les différentes phase composant la simulation:
  * <ul>
  * <li> Phase d'initialisation
- * <li> Phase de recherche et de récolte
+ * <li> Phase de recherche, de transformation puis de récolte
  * </ul>
  *
  * @param T : Correspond au terrain sur lequel effectuer la simulation
@@ -9,6 +9,7 @@
  * @param tabnom : Tableau contenant les noms (et donc le nombre) des Mineur à créer
  * @param tabMineur : Tableau d'objet:Mineur
  * @param tabRessource : Tableau d'objet:Ressource
+ * @param orTot : Variable contenant le nombre de pépites d'or total présentes sur le terrain.
  */
 public class Simulation {
 
@@ -16,8 +17,9 @@ public class Simulation {
     private Terrain T ;
     private String[][] tabInitRessource;
     private String[] tabnom;
+    private static int orTot;
     static Mineur[] tabMineur; // A REMETTRE EN PRIVATE!!!!
-    static Ressource[] tabRessource;   // A REMETTRE EN PRIVATE!!!!
+    private Ressource[] tabRessource;
 
     /** Constructeur de Simulation.
      * Les simulations partage toutes un même terrain
@@ -30,6 +32,14 @@ public class Simulation {
         this.T=ter1;
         this.tabInitRessource=tab;
         this.tabnom=tabnom;
+    }
+
+    /** Récupère la valeur de orTot : nombre de Mineur créé */
+    public static int getorTot(){ return orTot;}
+
+    /** Redéfinie la valeur de orTot : nombre de Mineur créé */
+    public static void setorTot(int newVal){
+        orTot = newVal;
     }
 
     /** Calcul la quantité totale de ressource disponible sur le terrain
@@ -118,22 +128,38 @@ public class Simulation {
         }
     }
 
-    public void rechercheRecolte(Mineur Vil){
-        if ( Vil.getX() == -1 && Vil.getY() == -1){
-            System.out.println(Vil.getName()+" est au village...il en sort!\n");
-            Vil.seDeplacer(0,0);
-        }else if ( ! T.caseEstVide(Vil.getX(),Vil.getY())){        // Si la case sur laquelle il se trouve est non vide...
-            Vil.recolte(T.getCase(Vil.getX(),Vil.getY()));       // Mettre dans le sac du Mineur la ressource...
-            System.out.println(Vil.getName()+" à récolté en ("+Vil.getX()+","+Vil.getY()+") "+Vil.getSac()+"");
-            T.videCase(Vil.getX(),Vil.getY());                   // Vider la case
+    public void recolte(Ressource ress){
+    }
+
+    public void recherchePiocheRecolte(Mineur Min1){
+        int posx = Min1.getX();
+        int posy = Min1.getY();
+        System.out.println(Min1.getName()+" est en ("+posx+","+posy+")");
+        if ( posx == -1 && posy == -1){
+            System.out.println(Min1.getName()+" est au Village...il en sort!");
+            Min1.seDeplacer(0,0);
+            System.out.println(Min1.getName()+" s'est déplacé en ("+Min1.getX()+","+Min1.getY()+")");
+        }else if ( ! T.caseEstVide(posx,posy)){        // Si la case sur laquelle il se trouve est non vide...
+            System.out.println(Min1.getName()+" est tombé sur ("+T.getCase(posx,posy)+", il pioche!");
+            Ressource ress=T.getCase(posx,posy);       // Mettre dans le sac Min1lagedu Mineur la ressource...
+            Min1.setSac(Min1.getSac() + ress.getQuantite());
+            orTot-= ress.getQuantite();
+            ress.setQuantite(0);
+            System.out.println(Min1.getName()+" à récolté "+T.getCase(posx,posy).getQuantite()+" or en ("+posx+","+posy+") "+Min1.getSac()+"");
+            T.videCase(posx,posy);                   // Vider la case
             //T.affiche();
-        }else{
-            int xalea = Vil.getX() + (Bao.nbrAleatoire(0,3)-1);
-            int yalea = Vil.getY() + (Bao.nbrAleatoire(0,3)-1);
-            if (T.sontValides(xalea , yalea)){
-                Vil.seDeplacer(xalea, yalea);
-                System.out.println(Vil.getName()+" s'est déplacé en ("+Vil.getX()+","+Vil.getY()+")");
-            }
+        }
+        else{
+            do{
+                int xalea = (Bao.nbrAleatoire(0,3)-1);
+                int yalea = (Bao.nbrAleatoire(0,3)-1);
+                System.out.println("LOOP xalea :"+xalea+", yalea:"+yalea);
+                if ((xalea != 0 || yalea != 0) && (T.sontValides(posx + xalea ,posy + yalea))){
+                    System.out.println("VALIDE xalea :"+xalea+", yalea:"+yalea);
+                    Min1.seDeplacer(posx + xalea,posy + yalea);
+                    System.out.println(Min1.getName()+" s'est déplacé en ("+Min1.getX()+","+Min1.getY()+")");
+                }
+            }while(Min1.getX()==posx && Min1.getY()==posy);
         }
     }
 }
