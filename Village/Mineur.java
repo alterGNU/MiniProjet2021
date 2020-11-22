@@ -11,7 +11,7 @@ public class Mineur{
     private String nom ; 
     private int px = -1; 
     private int py = -1;
-    private static int cpt = 0;
+    private static int cpt = 0; // static car à chaque création d'un mineur, incrémenter cette variable.
     private int sac = 0;
 
     /** Constructeur de Mineur.
@@ -24,6 +24,7 @@ public class Mineur{
         cpt++; // Incrémentation du compteur de Mineur
     }
 
+    // GETTER/SETTER
     /** Récupère le nom du Mineur */
     public String getName(){ return nom;}
     /** Récupère la coordonnée d'abscisse de Mineur */
@@ -53,7 +54,7 @@ public class Mineur{
         this.py=ynew;
     }
 
-    /** Retourne la distance minimale de case séparant un objet présent sur le terrain de la position actuelle de Mineur
+    /** Retourne la distance minimale séparant un mineur d'un objet présent sur le terrain 
      *
      * @param x Nouvelle abscisse de la position de Mineur
      * @param y Nouvelle ordonnée de la position de Mineur
@@ -64,5 +65,4 @@ public class Mineur{
         int distance =(int) Math.sqrt((xlong)*(xlong) +(ylong)*(ylong));
         return distance;
     }
-
 }

@@ -1,4 +1,3 @@
-import java.util.Random;
 /** Classe Bao : Boite-à-outils
  * Classe statique contenant des méthodes statiques
  */
