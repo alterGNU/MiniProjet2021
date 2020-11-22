@@ -35,15 +35,16 @@ public class TestSimulation {
                 }else{
                     S1.recherchePiocheRecolte(M);
                 }
-                t++;
-                System.out.print("----\n");
-
             }
+            t++;
+            System.out.print("----\n");
             // PHASE BILAN
-            System.out.print("Il a fallut "+t+" tour pour récolter l'intégralité des pépites d'or\n");
-            for (Mineur M: S1.tabMineur){
-                System.out.print(M.toString()+"\n");
-            }
+        }
+        T.toString();
+        T.affiche();
+        System.out.print("Il a fallut "+t+" tour pour récolter l'intégralité des pépites d'or\n");
+        for (Mineur M: S1.tabMineur){
+            System.out.print(M.toString()+"\n");
         }
     }
 } 
