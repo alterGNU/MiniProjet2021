@@ -26,12 +26,13 @@ public class TestSimulation {
         int ressourceDispo=S1.qTotRessource();
         System.out.print("Il y a "+ressourceDispo+" pierres précieuses sur le terrain\n");
         while (ressourceDispo>0){
+            System.out.print("tour "+t+":\n");
             ressourceDispo=S1.qTotRessource();
             for (Villageois V: Simulation.tabVillageois){
                 S1.rechercheRecolte(V);
             }
-            System.out.print("tour "+t+":\t");
             t++;
+            System.out.print("----\n");
 
         // ##########PHASE BILAN ##############
         }
