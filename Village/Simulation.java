@@ -144,8 +144,8 @@ public class Simulation {
             Ressource ress=T.getCase(posx,posy);       // Mettre dans le sac Min1lagedu Mineur la ressource...
             Min1.setSac(Min1.getSac() + ress.getQuantite());
             orTot-= ress.getQuantite();
+            System.out.println(Min1.getName()+" à récolté "+T.getCase(posx,posy).getQuantite()+" pépites d'or en ("+posx+","+posy+"), ce qui lui fait un total de "+Min1.getSac()+" pépites d'or!");
             ress.setQuantite(0);
-            System.out.println(Min1.getName()+" à récolté "+T.getCase(posx,posy).getQuantite()+" or en ("+posx+","+posy+") "+Min1.getSac()+"");
             T.videCase(posx,posy);                   // Vider la case
             //T.affiche();
         }
@@ -153,9 +153,7 @@ public class Simulation {
             do{
                 int xalea = (Bao.nbrAleatoire(0,3)-1);
                 int yalea = (Bao.nbrAleatoire(0,3)-1);
-                System.out.println("LOOP xalea :"+xalea+", yalea:"+yalea);
                 if ((xalea != 0 || yalea != 0) && (T.sontValides(posx + xalea ,posy + yalea))){
-                    System.out.println("VALIDE xalea :"+xalea+", yalea:"+yalea);
                     Min1.seDeplacer(posx + xalea,posy + yalea);
                     System.out.println(Min1.getName()+" s'est déplacé en ("+Min1.getX()+","+Min1.getY()+")");
                 }

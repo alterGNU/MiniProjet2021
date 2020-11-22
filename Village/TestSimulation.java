@@ -15,8 +15,8 @@ public class TestSimulation {
 
         // PETITE CONFIGUE POUR LES TEST
         Terrain T= new Terrain(4,4);
-        String[][] ressource={{"Roche","7"}};
-        String[] nom={"Bob","Sam"};
+        String[][] ressource={{"Roche","10"}};
+        String[] nom={"Bob","Sam","Cat"};
 
         Simulation S1 = new Simulation(T,ressource,nom);
        
@@ -28,18 +28,19 @@ public class TestSimulation {
         int t = 0; // Compteur de tour
         System.out.print("Il y a "+S1.getorTot()+" pépites d'or sur le terrain\n");
         while (S1.getorTot()>0){
-            System.out.print("tour "+t+":\n");
+            System.out.print("-----\nTOUR "+t+":\n");
             for (Mineur M: Simulation.tabMineur){
                 if (S1.getorTot()<=0){
+                    System.out.print("Désolé pour les autres mineurs de ce tour mais...");
                     break;
                 }else{
                     S1.recherchePiocheRecolte(M);
                 }
             }
             t++;
-            System.out.print("----\n");
-            // PHASE BILAN
+        // PHASE BILAN
         }
+        System.out.print("Il n'y a plus de pépites d'or disponible sur le terrain\n");
         T.toString();
         T.affiche();
         System.out.print("Il a fallut "+t+" tour pour récolter l'intégralité des pépites d'or\n");
