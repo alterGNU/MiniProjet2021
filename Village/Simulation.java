@@ -1,7 +1,7 @@
 /** Lance les différentes phase composant la simulation:
  * <ul>
  * <li> Phase d'initialisation
- * <li> Phase de récolte
+ * <li> Phase de recherche et de récolte
  * </ul>
  *
  * @param T : Correspond au terrain sur lequel effectuer la simulation
@@ -16,8 +16,8 @@ public class Simulation {
     private Terrain T ;
     private String[][] tabInitRessource;
     private String[] tabnom;
-    static Villageois[] tabVillageois; // AREMETTRE EN PRIVATE!!!!
-    private Ressource[] tabRessource;   
+    static Villageois[] tabVillageois; // A REMETTRE EN PRIVATE!!!!
+    static Ressource[] tabRessource;   // A REMETTRE EN PRIVATE!!!!
 
     /** Constructeur de Simulation.
      * Les simulations partage toutes un même terrain
@@ -109,7 +109,7 @@ public class Simulation {
                     Ressource res1 = new Ressource(nom,q);
                     T.setCase(x,y,res1);                   // Place la ressource sur le terrain
                     this.tabRessource[cptR] = res1;   // Ajoute la ressource au tableau de ressource
-                    System.out.println(" AJOUT :"+this.tabRessource[cptR].toString());
+                    //System.out.println(" AJOUT :"+this.tabRessource[cptR].toString());
                     cptR++;                                // incrémentation du compteur de ressource
                     cptBoucle++ ;                          // incrémentation du compteur de boucle
                 }
@@ -118,4 +118,22 @@ public class Simulation {
         }
     }
 
+    public void rechercheRecolte(Villageois Vil){
+        if ( Vil.getX() == -1 && Vil.getY() == -1){
+            System.out.println(Vil.getName()+" est au village...il en sort!\n");
+            Vil.seDeplacer(0,0);
+        }else if ( ! T.caseEstVide(Vil.getX(),Vil.getY())){        // Si la case sur laquelle il se trouve est non vide...
+            Vil.recolte(T.getCase(Vil.getX(),Vil.getY()));       // Mettre dans le sac du villageois la ressource...
+            System.out.println(Vil.getName()+" à récolté en ("+Vil.getX()+","+Vil.getY()+") "+Vil.getSac()+"");
+            T.videCase(Vil.getX(),Vil.getY());                   // Vider la case
+            //T.affiche();
+        }else{
+            int xalea = Vil.getX() + (Bao.nbrAleatoire(0,3)-1);
+            int yalea = Vil.getY() + (Bao.nbrAleatoire(0,3)-1);
+            if (T.sontValides(xalea , yalea)){
+                Vil.seDeplacer(xalea, yalea);
+                System.out.println(Vil.getName()+" s'est déplacé en ("+Vil.getX()+","+Vil.getY()+")");
+            }
+        }
+    }
 }

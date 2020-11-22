@@ -11,6 +11,7 @@ public class Villageois{
     private int px = -1; 
     private int py = -1;
     private static int cpt = 0;
+    private int sac = 0;
 
     /** Constructeur de Villageois.
      * Chaque villeagois nés au village(point de coordonnée 0.0) ainsi à sa création, seul son nom est demandé
@@ -30,10 +31,11 @@ public class Villageois{
     public int getY(){ return py;}
     /** Récupère la valeur de cpt : nombre de villageois créé */
     public static int getCpt(){ return cpt;}
-
+    /** Récupère le contenue du sac du villageois */
+    public int getSac(){ return sac;}
     /** Retourne la nom et la position du Villageois sur le terrain */
     public String toString(){
-        return "Villageois "+nom+" est dans la case ("+px+":"+py+")";
+        return "Villageois "+nom+" est dans la case ("+px+":"+py+") et à dans son sac "+sac+" pierre précieuse";
     }
 
     /** Déplace villageois
@@ -57,4 +59,14 @@ public class Villageois{
         int distance =(int) Math.sqrt((xlong)*(xlong) +(ylong)*(ylong));
         return distance;
     }
+
+    /** Récolte les ressources (les places dans le sac du villageois
+     *
+     * @param ress ressource à recolter
+     */
+    public void recolte(Ressource ress){
+        this.sac += ress.getQuantite();
+        ress.setQuantite(0);
+    }
+
 }

@@ -1,3 +1,4 @@
+import java.util.Random;
 /** Classe Bao : Boite-à-outils
  * Classe statique contenant des méthodes statiques
  */
@@ -8,15 +9,14 @@ public class Bao {
     private Bao(){
     }
 
-    /** Methode permettant de fournir un nombre compris entre 1 et le nombre fourni
+    /** Methode permettant de fournir un nombre d'entier naturel compris entre le min et le max fournis
      *
-     * @param max Correspond à la borne supérieur de l'intervalle dans lequel générer les entiers aléatoirement
-     * retournés
+     * @param min Correspond au minimum (inclu)
+     * @param max Correspond au maximum (exclu)
      */
     public static int nbrAleatoire(int min,int max){
         return ((int) (Math.random() * (max - min) + min));
     }
-
 
     /** Permet de calculer la somme du contenu d'un tableau d'entier
      * 
