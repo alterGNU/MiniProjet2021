@@ -29,7 +29,7 @@ public class TestSimulation {
         System.out.print("Il y a "+S1.getorTot()+" pépites d'or sur le terrain\n");
         while (S1.getorTot()>0){
             System.out.print("-----\nTOUR "+t+":\n");
-            for (Mineur M: Simulation.tabMineur){
+            for (Mineur M: S1.tabMineur){
                 if (S1.getorTot()<=0){
                     System.out.print("Désolé pour les autres mineurs de ce tour mais...");
                     break;
@@ -44,8 +44,6 @@ public class TestSimulation {
         T.toString();
         T.affiche();
         System.out.print("Il a fallut "+t+" tour pour récolter l'intégralité des pépites d'or\n");
-        for (Mineur M: S1.tabMineur){
-            System.out.print(M.toString()+"\n");
-        }
+        S1.afficheTabMineur();
     }
 } 

@@ -128,7 +128,16 @@ public class Simulation {
         }
     }
 
-    public void recolte(Ressource ress){
+    private void recolte(Mineur Min1){
+        int x = Min1.getX();
+        int y = Min1.getY();
+        Ressource R=T.getCase(x,y);       // Mettre dans le sac Min1lagedu Mineur la ressource...
+        System.out.println(Min1.getName()+" est tombé sur ("+T.getCase(x,y)+", il pioche!");
+        Min1.setSac(Min1.getSac() + R.getQuantite());
+        orTot-= R.getQuantite();
+        System.out.println(Min1.getName()+" à récolté "+T.getCase(x,y).getQuantite()+" pépites d'or en ("+x+","+y+"), ce qui lui fait un total de "+Min1.getSac()+" pépites d'or!");
+        R.setQuantite(0);
+        T.videCase(x,y);                   // Vider la case
     }
 
     public void recherchePiocheRecolte(Mineur Min1){
@@ -140,14 +149,7 @@ public class Simulation {
             Min1.seDeplacer(0,0);
             System.out.println(Min1.getName()+" s'est déplacé en ("+Min1.getX()+","+Min1.getY()+")");
         }else if ( ! T.caseEstVide(posx,posy)){        // Si la case sur laquelle il se trouve est non vide...
-            System.out.println(Min1.getName()+" est tombé sur ("+T.getCase(posx,posy)+", il pioche!");
-            Ressource ress=T.getCase(posx,posy);       // Mettre dans le sac Min1lagedu Mineur la ressource...
-            Min1.setSac(Min1.getSac() + ress.getQuantite());
-            orTot-= ress.getQuantite();
-            System.out.println(Min1.getName()+" à récolté "+T.getCase(posx,posy).getQuantite()+" pépites d'or en ("+posx+","+posy+"), ce qui lui fait un total de "+Min1.getSac()+" pépites d'or!");
-            ress.setQuantite(0);
-            T.videCase(posx,posy);                   // Vider la case
-            //T.affiche();
+            recolte(Min1);
         }
         else{
             do{
@@ -158,6 +160,12 @@ public class Simulation {
                     System.out.println(Min1.getName()+" s'est déplacé en ("+Min1.getX()+","+Min1.getY()+")");
                 }
             }while(Min1.getX()==posx && Min1.getY()==posy);
+        }
+    }
+
+    public void afficheTabMineur(){
+        for (Mineur M: tabMineur){
+            System.out.print(M.toString()+"\n");
         }
     }
 }
