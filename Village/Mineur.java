@@ -40,7 +40,7 @@ public class Mineur{
     }
     /** Retourne la nom et la position du Mineur sur le terrain */
     public String toString(){
-        return "Mineur "+nom+" est dans la case ("+px+":"+py+") et à dans son sac "+sac+" pépites d'Or.";
+        return "Mineur "+nom+" est dans la case ("+px+":"+py+") et a dans son sac "+sac+" pépites d'Or.";
     }
 
     /** Déplace Mineur

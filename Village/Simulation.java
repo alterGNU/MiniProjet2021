@@ -14,7 +14,7 @@
 public class Simulation {
 
     //private final Terrain T = new Terrain(10,10);
-    private Terrain T ;
+    private Terrain T;
     private String[][] tabInitRessource;
     private String[] tabnom;
     private static int orTot;
@@ -22,11 +22,10 @@ public class Simulation {
     private Ressource[] tabRessource;
 
     /** Constructeur de Simulation.
-     * Les simulations partage toutes un même terrain
      *
-     * @param nom : Correspond au nom de la simulation
-     * @param l : Correspond au nombre de ligne du terrain à générer et sur lequel faire les simulations
-     * @param c : Correspond au nombre de colonne du terrain à générer et sur lequel faire les simulations
+     * @param ter1 : Correspond au terrain de la simulation
+     * @param tab : Tableau de String associant les noms des ressources à créer ainsi que leurs nombres
+     * @param tabnom : Tableau de nom des Mineurs à utiliser dans la simulation
      */
     public Simulation(Terrain ter1, String[][] tab,String[] tabnom){
         this.T=ter1;
@@ -34,9 +33,9 @@ public class Simulation {
         this.tabnom=tabnom;
     }
 
+    // GETTEUR/SETTEUR
     /** Récupère la valeur de orTot : nombre de Mineur créé */
     public static int getorTot(){ return orTot;}
-
     /** Redéfinie la valeur de orTot : nombre de Mineur créé */
     public static void setorTot(int newVal){
         orTot = newVal;
@@ -56,18 +55,14 @@ public class Simulation {
      * <li> Initialise les Mineur via la méthode initMineur
      */
     public void phaseInit(){
-        
-        System.out.println("PHASE 1:Initialisation de l'environnement:");
-
-        // PHASE Initialisation : 
-        // Génére aléatoirement des cases sur lesquelles placer les ressources à partir d'un tableau de ressource
-        initRandomRessources(this.tabInitRessource) ;
-        // Créer les Mineur à partir d'un tableau de nom et créer un tableau de Mineur
+        System.out.println("PHASE 1:INITIALISATION DE L'ENVIRONNEMENT:\nInformations sur les mineurs:");
         initMineur(this.tabnom);
-        // Affichage du terrain avec les ressources ajoutées
-        System.out.println("Informations sur le terrain:\n"+T);
-        T.affiche();
-       
+        System.out.println("\nInformations sur les ressources:");
+        initRandomRessources(this.tabInitRessource) ;   // Place aléatoirement les ressources sur le terrain
+        orTot=qTotRessource();                          // Calcul le nombre de pépites cachées et l'affecte à orTot
+        System.out.print("Il y a en tout "+orTot+" pépites d'or caché sur le terrain suivant : \n");
+        System.out.println(T);
+        T.affiche();                                    // Affiche le terrain avec le ressources qu'il contient
     }
 
 
@@ -140,26 +135,34 @@ public class Simulation {
         T.videCase(x,y);                   // Vider la case
     }
 
-    public void recherchePiocheRecolte(Mineur Min1){
-        int posx = Min1.getX();
-        int posy = Min1.getY();
-        System.out.println(Min1.getName()+" est en ("+posx+","+posy+")");
-        if ( posx == -1 && posy == -1){
-            System.out.println(Min1.getName()+" est au Village...il en sort!");
-            Min1.seDeplacer(0,0);
-            System.out.println(Min1.getName()+" s'est déplacé en ("+Min1.getX()+","+Min1.getY()+")");
-        }else if ( ! T.caseEstVide(posx,posy)){        // Si la case sur laquelle il se trouve est non vide...
-            recolte(Min1);
-        }
-        else{
-            do{
-                int xalea = (Bao.nbrAleatoire(0,3)-1);
-                int yalea = (Bao.nbrAleatoire(0,3)-1);
-                if ((xalea != 0 || yalea != 0) && (T.sontValides(posx + xalea ,posy + yalea))){
-                    Min1.seDeplacer(posx + xalea,posy + yalea);
-                    System.out.println(Min1.getName()+" s'est déplacé en ("+Min1.getX()+","+Min1.getY()+")");
+    public void recherchePiocheRecolte(){
+        // parcour tout les mineurs de la liste
+        for (Mineur M: tabMineur){
+            if (orTot<=0){
+                System.out.print("Désolé pour les autres mineurs de ce tour mais...");
+                break;
+            }else{
+                int posx = M.getX();
+                int posy = M.getY();
+                System.out.println(M.getName()+" est en ("+posx+","+posy+")");
+                if ( posx == -1 && posy == -1){
+                    System.out.println(M.getName()+" est au Village...il en sort!");
+                    M.seDeplacer(0,0);
+                    System.out.println(M.getName()+" s'est déplacé en ("+M.getX()+","+M.getY()+")");
+                }else if ( ! T.caseEstVide(posx,posy)){        // Si la case sur laquelle il se trouve est non vide...
+                    recolte(M);
                 }
-            }while(Min1.getX()==posx && Min1.getY()==posy);
+                else{
+                    do{
+                        int xalea = (Bao.nbrAleatoire(0,3)-1);
+                        int yalea = (Bao.nbrAleatoire(0,3)-1);
+                        if ((xalea != 0 || yalea != 0) && (T.sontValides(posx + xalea ,posy + yalea))){
+                            M.seDeplacer(posx + xalea,posy + yalea);
+                            System.out.println(M.getName()+" s'est déplacé en ("+M.getX()+","+M.getY()+")");
+                        }
+                    }while(M.getX()==posx && M.getY()==posy);
+                }
+            }
         }
     }
 

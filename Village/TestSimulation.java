@@ -8,39 +8,44 @@ public class TestSimulation {
      */
     public static void main(String[] args) {
         
-        //// CONFIGURATION STANDART 
-        //Terrain T= new Terrain(10,10);
-        //String[][] ressource={{"Caillou","7"},{"Roche","7"},{"Cobalt","6"},{"Terre","4"}};
-        //String[] nom={"Bob","Sam","Thierry"};
-
+// -[ JEUX DE DONNÉES UTILISABLES ]------------------------------------------------------------------------------------
         // PETITE CONFIGUE POUR LES TEST
-        Terrain T= new Terrain(4,4);
-        String[][] ressource={{"Roche","10"}};
-        String[] nom={"Bob","Sam","Cat"};
+        Terrain T0= new Terrain(4,4);
+        String[][] ressource0={{"Roche","10"}};
+        String[] nom0={"Bob","Sam","Cat"};
 
+        //// CONFIGURATION STANDART 
+        Terrain T= new Terrain(10,10);
+        String[][] ressource={{"Caillou","7"},{"Roche","7"},{"Cobalt","6"},{"Terre","4"}};
+        String[] nom={"Bob","Sam","Thierry"};
+// -[ LANCEMENT DES SIMULATIONS ]---------------------------------------------------------------------------------------
+ 
+        lanceSimulationAvec(T0,ressource0,nom0);
+        //lanceSimulationAvec(T,ressource,nom);
+    }
+
+    /** Lance une simulation avec le jeux de donnée passé en paramètre.
+     *
+     * @param T Correspond au terrain que l'on souhaite utiliser
+     * @param ressource Correspond à la liste (String) permettant de définir les noms et les quantitées d'objet
+     * ressource à placer sur le terrain
+     * @param nom est une liste de String contenant les noms des mineurs à placer dans la simulation
+     */
+    private static void lanceSimulationAvec(Terrain T, String[][] ressource, String[] nom ) {
+        // PHASE 1 INITIALISATION
         Simulation S1 = new Simulation(T,ressource,nom);
-       
-        // PHASE INITIALISATION
         S1.phaseInit();
-        S1.setorTot(S1.qTotRessource());
-
-        // PHASE RECOLTE
-        int t = 0; // Compteur de tour
-        System.out.print("Il y a "+S1.getorTot()+" pépites d'or sur le terrain\n");
-        while (S1.getorTot()>0){
+        // PHASE 2 RECOLTE
+        System.out.println("PHASE 2: RECHERCHE & RECOLTE");
+        int t = 0;                                          // Compteur de tour
+        while (S1.getorTot()>0){                            // tant qu'il reste des pépites d'or sur le terrain faire:
             System.out.print("-----\nTOUR "+t+":\n");
-            for (Mineur M: S1.tabMineur){
-                if (S1.getorTot()<=0){
-                    System.out.print("Désolé pour les autres mineurs de ce tour mais...");
-                    break;
-                }else{
-                    S1.recherchePiocheRecolte(M);
-                }
-            }
-            t++;
-        // PHASE BILAN
+            S1.recherchePiocheRecolte();
+            t++;                                            // incrémentation de la variable de tour
         }
-        System.out.print("Il n'y a plus de pépites d'or disponible sur le terrain\n");
+        System.out.print("Il n'y a plus de pépites d'or disponible sur le terrain!\nFIN DE LA RECOLTE\n\n");
+        // PHASE 3 BILAN
+        System.out.println("PHASE 3: BILAN");
         T.toString();
         T.affiche();
         System.out.print("Il a fallut "+t+" tour pour récolter l'intégralité des pépites d'or\n");
