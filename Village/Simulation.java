@@ -4,32 +4,35 @@
  * <li> Phase de recherche, de transformation puis de récolte
  * </ul>
  *
- * @param T : Correspond au terrain sur lequel effectuer la simulation
+ * @param t : Correspond au terrain sur lequel effectuer la simulation
  * @param tabInitRessource : Tableau contenant le nom et le nombre de ressources à ajouter au terrain
- * @param tabnom : Tableau contenant les noms (et donc le nombre) des Mineur à créer
+ * @param tabNom : Tableau contenant les noms (et donc le nombre) des Mineur à créer
  * @param tabMineur : Tableau d'objet:Mineur
  * @param tabRessource : Tableau d'objet:Ressource
  * @param orTot : Variable contenant le nombre de pépites d'or total présentes sur le terrain.
+ * @param nbr : Correspond au nombre de mineur à créé pour la simulation
  */
 public class Simulation {
 
-    private Terrain T;
+    private Terrain t;
     private String[][] tabInitRessource;
-    private String[] tabnom;
     private int orTot;
+    private int nbr;
     private Mineur[] tabMineur;
     private Ressource[] tabRessource;
+    private String[] tabNom={"Bob","Sam","Tom","Luck","Teo","Seb","Mat","JP","JD","PJ"};
 
     /** Constructeur de Simulation.
      *
      * @param ter1 : Correspond au terrain de la simulation
      * @param tab : Tableau de String associant les noms des ressources à créer ainsi que leurs nombres
-     * @param tabnom : Tableau de nom des Mineurs à utiliser dans la simulation
+     * @param nbrMineur : Correspond au nombre de mineur choisit pour la simulation
      */
-    public Simulation(Terrain ter1, String[][] tab,String[] tabnom){
-        this.T=ter1;
+    public Simulation(Terrain ter1, String[][] tab,int nbrMineur){
+        this.t=ter1;
         this.tabInitRessource=tab;
-        this.tabnom=tabnom;
+        this.tabNom=tabNom;
+        this.nbr=nbrMineur;
     }
 
     // GETTEUR/SETTEUR
@@ -47,13 +50,13 @@ public class Simulation {
      */
     public void phaseInit(){
         System.out.println("PHASE 1:INITIALISATION DE L'ENVIRONNEMENT:\nInformations sur les mineurs:");
-        initMineur(this.tabnom);                        // Initialisation des mineurs
+        initMineur(this.nbr);                           // Initialisation des mineurs
         System.out.println("\nInformations sur les ressources:");
         initRandomRessources(this.tabInitRessource) ;   // Place aléatoirement les ressources sur le terrain
         orTot=qTotRessource();                          // Calcul le nombre de pépites cachées et l'affecte à orTot
         System.out.print("Il y a en tout "+orTot+" pépites d'or caché sur le terrain suivant : \n");
-        System.out.println(T);                          // Affiche les infos du tableau
-        T.affiche();                                    // Affiche le terrain avec le ressources qu'il contient
+        System.out.println(t);                          // Affiche les infos du tableau
+        t.affiche();                                    // Affiche le terrain avec le ressources qu'il contient
     }
 
     /** Calcul la quantité totale de ressource disponible sur le terrain
@@ -66,20 +69,24 @@ public class Simulation {
 
     /** Initialisation des Mineurs, puis affiche une phrase indiquant le nombre de mineur actuellement créé
      * <ul>
-     * <li> Créer les Mineurs à partir d'un tableau de nom
+     * <li> Créer le nombre de mineur choisi pour la simulation
+     * <li> Leur affecte un nom à partir d'un tableau de nom 
      * <li> Créer un tableau d'objet:Mineur
      * </ul>
      * @param arrayName Correspond au tableau contenant la liste des noms des mineurs
      */
-    private void initMineur(String[] arrayName){
-        int taille = arrayName.length;
-        this.tabMineur = new Mineur[taille];
-        for (int i=0; i<taille;i++){
-            this.tabMineur[i] = new Mineur(arrayName[i]);
+    private void initMineur(int nbr){
+        this.tabMineur = new Mineur[nbr];
+        //Mineur initiale est le chef du village, il à donc pour coordonnée le village(-1,-1) et à un sac Vide
+        //this.tabMineur[0] = new Mineur("Bob",-1,-1,0);
+        Mineur m0 = new Mineur("Chef",-1,-1,0); // c'est à partir de lui que seront cloné les mineurs
+        for (int i=0;i<nbr;i++){
+            this.tabMineur[i] = new Mineur(m0);    // Créé un tableau de mineur
+            this.tabMineur[i].setName(tabNom[i]);
             System.out.println(this.tabMineur[i].toString());
         }
-        // Affichage du nombre de Mineur créé
-        System.out.println("En tout, "+Mineur.getCpt()+" mineurs ont été créés.");
+        //// Affichage du nombre de Mineur créé
+        //System.out.println("En tout, "+Mineur.getCpt()+" mineurs ont été créés.");
     }
 
 
@@ -111,13 +118,13 @@ public class Simulation {
             int cptBoucle = 0;                            // Compteur de boucle
             while (cptBoucle < m) {
                 // Génération aléatoire des coordonnées et de la quantité des Arbres à créer
-                int x = Bao.nbrAleatoire(0,T.nbLignes);   // Valeur aléatoire d'abscisse comprise entre 0 et longueur max terrain
-                int y = Bao.nbrAleatoire(0,T.nbColonnes); // Valeur aléatoire d'ordonnée comprise entre 0 et largeur max terrain
+                int x = Bao.nbrAleatoire(0,t.nbLignes);   // Valeur aléatoire d'abscisse comprise entre 0 et longueur max terrain
+                int y = Bao.nbrAleatoire(0,t.nbColonnes); // Valeur aléatoire d'ordonnée comprise entre 0 et largeur max terrain
                 int q = Bao.nbrAleatoire(1,4);            // Valeur aléatoire de quantité comprise entre 1 et 3
 
-                if (T.caseEstVide(x,y)){                  // Vérification si Vide, alors 
+                if (t.caseEstVide(x,y)){                  // Vérification si Vide, alors 
                     Ressource res1 = new Ressource(nom,q);// Crée la ressource
-                    T.setCase(x,y,res1);                  // La place sur le terrain
+                    t.setCase(x,y,res1);                  // La place sur le terrain
                     this.tabRessource[cptR] = res1;       // L'Ajoute au tableau de ressource
                     //System.out.println(" AJOUT :"+this.tabRessource[cptR].toString());
                     cptR++;                                // incrémentation du compteur de ressource
@@ -135,7 +142,7 @@ public class Simulation {
     private void recolte(Mineur Min1){
         int x = Min1.getX();
         int y = Min1.getY();
-        Ressource R=T.getCase(x,y);                        // Mettre dans le sac du Mineur la ressource...
+        Ressource R=t.getCase(x,y);                        // Mettre dans le sac du Mineur la ressource...
         if (Bao.estEntre(R.getQuantite(),2,20)){           // Si la quantité est comprise entre [1;20]
         System.out.println(Min1.getName()+" est tombé sur ("+R.toString()+", il pioche!");
         Min1.setSac(Min1.getSac() + 1 );                   // Remplis le sac du mineur avec la quantité d'or trouvé
@@ -148,8 +155,8 @@ public class Simulation {
             R.setQuantite(R.getQuantite() - 1);            // Place la quantité de la ressource à zéro
             orTot--;                                       // Décrémente la var donnant le nombre d'or présent sur terrain
             System.out.println(Min1.getName()+" à récolté 1 pépite d'or en ("+x+","+y+"), ce qui lui fait un total de "+Min1.getSac()+" pépites d'or!");
-            T.videCase(x,y);                               // Vider la case +++ TRANSFORMER ++++ CLONE +++++
-            Gravats g1 = new Gravats(x,y,T);               // Place l'objet Gravas sur le tableau
+            t.videCase(x,y);                               // Vider la case +++ TRANSFORMER ++++ CLONE +++++
+            Gravats g1 = new Gravats(x,y,t);               // Place l'objet Gravas sur le tableau
             System.out.println("il n'y a plus rien ici...hormis quelques gravats!");
         }
     }
@@ -170,14 +177,14 @@ public class Simulation {
                     M.seDeplacer(0,0);
                     System.out.println(M.getName()+" s'est déplacé en ("+M.getX()+","+M.getY()+")");
                 // S'IL EST SUR UNE CASE NON VIDE QUI N'EST PAS UN GRAVATS --> RECOLTE
-                }else if ((! T.caseEstVide(posx,posy))&&(T.getCase(posx,posy).toString()!="Gravats")){
+                }else if ((! t.caseEstVide(posx,posy))&&(t.getCase(posx,posy).toString()!="Gravats")){
                     recolte(M);
                 }
                 else{                                      // S'IL EST SUR UNE CASE VIDE-->SE DEPLACE DE 1 CASE
                     do{
                         int xalea = (Bao.nbrAleatoire(0,3)-1);
                         int yalea = (Bao.nbrAleatoire(0,3)-1);
-                        if ((xalea != 0 || yalea != 0) && (T.sontValides(posx + xalea ,posy + yalea))){
+                        if ((xalea != 0 || yalea != 0) && (t.sontValides(posx + xalea ,posy + yalea))){
                             M.seDeplacer(posx + xalea,posy + yalea);
                             System.out.println(M.getName()+" s'est déplacé en ("+M.getX()+","+M.getY()+")");
                         }

@@ -3,35 +3,58 @@
  * @param nom : Correspond au nom du Mineur
  * @param px : abscisse initiale d'un Mineur à sa création
  * @param py : ordonnée initiale d'un Mineur à sa création
- * @param cpt : Compteur du nombre de Mineur crée
+ * @param cpt : Compteur du nombre de Mineur crée, commence à -1 car le premier mineur est le chef du village!!
  * @param sac : Affiche le nombre de pépite d'or contenu dans le sac du mineur
  */
 public class Mineur{
     // Tout Mineur à pour coordonnée de départ la case village (0:0)
     private String nom ; 
-    private int px = -1; 
-    private int py = -1;
-    private static int cpt = 0; // static car à chaque création d'un mineur, incrémenter cette variable.
-    private int sac = 0;
+    private int px ; 
+    private int py ;
+    private static int cpt = -1; // static car à chaque création d'un mineur, Incrémentation de cette variable.
+    private int sac;
 
-    /** Constructeur par copie de Mineur.
+    /** Constructeur de Mineur.
      * Chaque mineur nés au village(point de coordonnée 0.0) ainsi à sa création, seul son nom est demandé
      *
      * @param name : Correspond au nom du Mineur
+     * @param posx : abscisse d'un Mineur
+     * @param posy : ordonnée d'un Mineur
+     * @param saccoche : Correspond au nombre de pépite d'or contenu dans le sac du mineur
      */
-    public Mineur(String name){
-        this.nom=name;
+    public Mineur(String name,int posx,int posy,int saccoche){
+        nom=name;
+        px=posx;
+        py=posy;
+        sac=saccoche;
+        cpt++; // Incrémentation du compteur de Mineur
+    }
+
+    /** Constructeur de Mineur par copie
+     * Permet de créer une copie d'un mineur
+     *
+     * @param mineur : Correspond au nom du Mineur
+     */
+    public Mineur(Mineur autreMineur){
+        this.nom = autreMineur.nom;
+        this.px = autreMineur.px;
+        this.py = autreMineur.py;
+        this.sac = autreMineur.sac;
         cpt++; // Incrémentation du compteur de Mineur
     }
 
     // GETTER/SETTER
     /** Récupère le nom du Mineur */
     public String getName(){ return nom;}
+    /** Modifie le nom du Mineur */
+    public void setName(String newname){ 
+        nom = newname;
+    }
     /** Récupère la coordonnée d'abscisse de Mineur */
     public int getX(){ return px;}
     /** Récupère la coordonnée d'abscisse de Mineur */
     public int getY(){ return py;}
-    /** Récupère la valeur de cpt : nombre de Mineur créé */
+    /** Récupère la valeur de cpt : nombre de Mineur à créé */
     public static int getCpt(){ return cpt;}
     /** Récupère le contenue du sac du Mineur */
     public int getSac(){ return sac;}
