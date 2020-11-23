@@ -1,6 +1,6 @@
 /**
+ * @author Kenza BOUAICHA 3703308
  * @author Laurent GRONDIN 2767308
- * 
  */
 public class TestSimulation {
     /**

@@ -32,7 +32,11 @@ public class Simulation {
         this.t=ter1;
         this.tabInitRessource=tab;
         this.tabNom=tabNom;
-        this.nbr=nbrMineur;
+        if (Bao.estEntre(nbrMineur,0,10)){
+            this.nbr=nbrMineur;
+        }else{
+            this.nbr=10;
+        }
     }
 
     // GETTEUR/SETTEUR
