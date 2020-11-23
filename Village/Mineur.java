@@ -14,8 +14,8 @@ public class Mineur{
     private static int cpt = 0; // static car à chaque création d'un mineur, incrémenter cette variable.
     private int sac = 0;
 
-    /** Constructeur de Mineur.
-     * Chaque villeagois nés au village(point de coordonnée 0.0) ainsi à sa création, seul son nom est demandé
+    /** Constructeur par copie de Mineur.
+     * Chaque mineur nés au village(point de coordonnée 0.0) ainsi à sa création, seul son nom est demandé
      *
      * @param name : Correspond au nom du Mineur
      */

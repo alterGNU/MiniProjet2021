@@ -148,8 +148,9 @@ public class Simulation {
             R.setQuantite(R.getQuantite() - 1);            // Place la quantité de la ressource à zéro
             orTot--;                                       // Décrémente la var donnant le nombre d'or présent sur terrain
             System.out.println(Min1.getName()+" à récolté 1 pépite d'or en ("+x+","+y+"), ce qui lui fait un total de "+Min1.getSac()+" pépites d'or!");
-            System.out.println("il n'y a plus rien ici...hormis quelques gravats!");
             T.videCase(x,y);                               // Vider la case +++ TRANSFORMER ++++ CLONE +++++
+            Gravats g1 = new Gravats(x,y,T);               // Place l'objet Gravas sur le tableau
+            System.out.println("il n'y a plus rien ici...hormis quelques gravats!");
         }
     }
 
@@ -168,8 +169,8 @@ public class Simulation {
                     System.out.println(M.getName()+" est au Village...il en sort!");
                     M.seDeplacer(0,0);
                     System.out.println(M.getName()+" s'est déplacé en ("+M.getX()+","+M.getY()+")");
-                // S'IL EST SUR UNE CASE NON VIDE -->RECOLTE
-                }else if ((! T.caseEstVide(posx,posy))){
+                // S'IL EST SUR UNE CASE NON VIDE QUI N'EST PAS UN GRAVATS --> RECOLTE
+                }else if ((! T.caseEstVide(posx,posy))&&(T.getCase(posx,posy).toString()!="Gravats")){
                     recolte(M);
                 }
                 else{                                      // S'IL EST SUR UNE CASE VIDE-->SE DEPLACE DE 1 CASE
