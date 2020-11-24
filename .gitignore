@@ -10,8 +10,6 @@
 
 # Compiled class file
 *.class
-*/*.class
-src/*.class
 
 #Ignorer SWAP-FILES (fichiers de sauvegarde)
 *~
