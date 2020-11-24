@@ -5,6 +5,9 @@
 *.doc
 *.odt
 
+# Rapport
+*.pdf
+
 # Compiled class file
 *.class
 
