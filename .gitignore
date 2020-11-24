@@ -1,12 +1,12 @@
 # Dossier doc
-doc/*
+# doc/*
 
 # Description du projet
 *.doc
 *.odt
 
 # Compiled class file
-#*.class
+*.class
 
 #Ignorer SWAP-FILES (fichiers de sauvegarde)
 *~
